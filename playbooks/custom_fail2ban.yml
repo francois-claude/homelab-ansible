@@ -1,0 +1,8 @@
+---
+
+- name: Install fail2ban
+  hosts: [ 'debops_service_fail2ban' ]
+
+  roles:
+    - role: fail2ban
+      tags: [ 'role::fail2ban', 'skip::fail2ban' ]

@@ -1,0 +1,33 @@
+---
+- name: remove hosts from hosts.allow file
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+
+    - lineinfile:
+        path: /etc/hosts.allow
+        state: absent
+        regexp: '(10\.10\.120\.40)'
+
+    - lineinfile:
+        path: /etc/hosts.allow
+        state: absent
+        regexp: '(10\.10\.120\.40\/24)'
+
+    - lineinfile:
+        path: /etc/hosts.allow
+        state: absent
+        regexp: '(10\.10\.100\.70)'
+
+    - lineinfile:
+        path: /etc/hosts.allow
+        state: absent
+        regexp: '(10\.10\.100\.70\/24)'
+
+    - lineinfile:
+        path: /etc/hosts.allow
+        regexp: '^# Ansible Controlelrs'
+        insertafter: '^# Ansible Controllers'
+        line: 'sshd : 10.10.100.70/24'
