@@ -1,0 +1,7 @@
+---
+## PYROSCOPE ETC STILL REQUIRE PYTHON2
+python__v2: True
+
+python__v3: True
+
+python__raw_purge_v2: False

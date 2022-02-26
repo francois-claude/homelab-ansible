@@ -1,0 +1,6 @@
+---
+apt_install__host_packages:
+
+  - 'openjdk-11-jre-headless'
+  - 'unzip'
+

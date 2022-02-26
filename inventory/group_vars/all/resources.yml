@@ -1,0 +1,23 @@
+---
+## TELL ANSIBLE LOCATION OF RESOURCES DIRECTORY
+resources__src: '{{ inventory_dir | realpath + "/../resources/" }}'
+
+resources__group_paths:
+
+  - path: '/var/empty'
+    state: 'absent'
+
+  - path: '/nonexistent'
+    state: 'absent'
+
+  - path: '/etc/hosts.allow.d'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'directory'
+
+  - path: '/etc/services.d'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'directory'

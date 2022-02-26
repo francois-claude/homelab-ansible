@@ -1,0 +1,91 @@
+---
+resources__host_paths:
+
+## OPT DIR
+  - path: '/opt'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+    acl:
+      - etype: 'user'
+        entity: 'tautulli'
+        permissions: 'rwX'
+        state: 'present'
+
+## TAUTULLI DIR
+  - path: '/opt/Tautulli'
+    owner: 'tautulli'
+    group: 'tautulli'
+    mode: '0700'
+    state: 'directory'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+resources__host_files:
+
+## TAUTULLI SYSTEMD SERVICE FILE
+  - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system/tautulli.service" }}'
+    dest: '/etc/systemd/system/tautulli.service'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+
+resources__host_repositories:
+
+## TAUTULLI REPOSITORY
+  - repo: 'https://github.com/Tautulli/Tautulli'
+    dest: '/opt/Tautulli'
+    owner: 'tautulli'
+    _update: False
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+# resources__host_commands:
+
+# ## TAUTULLI SYSTEMD ACTIONS
+
+#   - name: 'Reload systemd daemon'
+#     shell: |
+#       systemctl daemon-reload
+#     # state: 'ignore'
+
+#   - name: 'Sleep for a few seconds'
+#     shell: |
+#       sleep 2
+#     # state: 'ignore'
+
+#   - name: 'Disable systemd Tautulli service'
+#     shell: |
+#       systemctl disable tautulli.service
+#     # state: 'ignore'
+
+#   - name: 'Sleep for a few seconds'
+#     shell: |
+#       sleep 2
+#     # state: 'ignore'
+
+#   - name: 'Enable systemd Tautulli service'
+#     shell: |
+#       systemctl enable tautulli.service
+#     # state: 'ignore'
+
+#   - name: 'Sleep for a few seconds'
+#     shell: |
+#       sleep 2
+#     # state: 'ignore'
+
+#   - name: 'Start systemd Tautulli service if disabled'
+#     shell: |
+#       if ! systemctl is-active tautulli.service ; then
+#           systemctl start tautulli.service
+#       fi
+#     # state: 'ignore'

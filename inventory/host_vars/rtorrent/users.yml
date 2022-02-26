@@ -1,0 +1,29 @@
+---
+users__host_accounts:
+
+  - name: 'rtorrent'
+    user: True
+    system: False
+    admin: False
+    uid: '2020'
+    group: 'rtxmlrpc'
+    groups: [ 'rtorrent', 'rtxmlrpc', 'www-data', 'labmedia', 'sshusers' ]
+    append: False
+    comment: 'rT-PS-CH'
+    no_log: False
+    password: '*'
+    password_lock: True
+    update_password: 'always'
+    linger: False
+    home: '/home/rtorrent'
+    create_home: True
+    home_owner: 'rtorrent'
+    home_group: 'rtxmlrpc'
+    home_mode: '0750'
+    generate_ssh_key: False
+    sshkeys: "{{ ssh_auth_keys_debops.fclaude_user }}"
+    sshkeys_exclusive: True
+    sshkeys_state: 'present'
+    shell: '/bin/bash'
+    dotfiles_enabled: False
+    state: 'present'

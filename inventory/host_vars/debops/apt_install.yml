@@ -1,0 +1,9 @@
+---
+apt_install__host_packages:
+
+  - 'apt-transport-https'
+  - 'ca-certificates'
+  - 'dirmngr'
+  - 'gnupg'
+  - 'gh'
+

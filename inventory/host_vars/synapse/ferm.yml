@@ -1,0 +1,14 @@
+---
+ferm__host_rules:
+
+# MATRIX / SYNAPSE INCOMING CONNECTIONS
+  - name: 'DEBOPS_accept_port_8008_matrix_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.130.10'
+    daddr: '10.10.120.18'
+    dport: '8008'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from nginx to port 8008/tcp'
+

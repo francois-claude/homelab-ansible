@@ -1,0 +1,85 @@
+---
+nfs_server__allow:
+
+  - '10.10.100.10' # ARCHBTW
+  - '10.10.100.20' # MBP
+  - '10.10.120.25' # SONARR
+  - '10.10.120.26' # RADARR
+  - '10.10.120.28' # LIDARR
+
+nfs_server__host_exports:
+
+
+    ## RT_WORK EXPORT
+  - path: '/srv/nfs/rt_work'
+    comment: 'rt_work nfs export'
+    owner: 'rtorrent'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+    acl:
+
+        ## SONARR / RADARR / LIDARR
+      - clients: [ '10.10.120.25', '10.10.120.26', '10.10.120.28' ]
+        options: 
+          - 'rw'
+          - 'sync'
+          - 'all_squash'
+          - 'no_subtree_check'
+          - 'anonuid=2020' # RTPS UID
+          - 'anongid=2030' # RTXMLRPC UID
+
+    bind:
+      src: '/mnt/vols/rt_work'
+      options: [ 'x-systemd.requires-mounts-for=/mnt/vols/rt_work/' ]
+
+
+
+
+## RT_WATCH EXPORT
+  - path: '/srv/nfs/rt_watch'
+    comment: 'rt_watch nfs export'
+    owner: 'rtorrent'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+    acl:
+
+        ## ARCHBTW / MBP
+      - clients: [ '10.10.100.10', '10.10.100.20' ]
+        options: 
+          - 'rw'
+          - 'sync'
+          - 'all_squash'
+          - 'no_subtree_check'
+          - 'anonuid=2020' # RTPS UID
+          - 'anongid=2030' # RTXMLRPC UID
+
+    bind:
+      src: '/home/rtorrent/rtorrent/watch'
+
+
+
+
+## RT_SHARE EXPORT
+  - path: '/srv/nfs/rt_share'
+    comment: 'rt_share nfs export'
+    owner: 'rtorrent'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+    acl:
+
+        ## ARCHBTW / MBP
+      - clients: [ '10.10.100.10', '10.10.100.20' ]
+        options: 
+          - 'rw'
+          - 'sync'
+          - 'all_squash'
+          - 'no_subtree_check'
+          - 'anonuid=2020' # RTPS UID
+          - 'anongid=2030' # RTXMLRPC UID
+
+    bind:
+      src: '/mnt/vols/rt_share'
+      options: [ 'x-systemd.requires-mounts-for=/mnt/vols/rt_share/' ]

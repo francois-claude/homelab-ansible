@@ -1,0 +1,12 @@
+---
+nfs_server__v3: False
+
+nfs_server__firewall_protocols: 'tcp'
+
+nfs_server__service_ports:
+
+  'rpc.nfs-cb':   '4553'
+  'rpc.lockd':    '4552'
+  'rpc.mountd':   '4550'
+  'rpc.statd':    '4551'
+  'rpc.statd-bc': '4554'

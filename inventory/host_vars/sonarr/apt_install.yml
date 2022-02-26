@@ -1,0 +1,12 @@
+---
+apt_install__host_packages:
+
+  - 'mediainfo'
+  - 'curl'
+  - 'apt-transport-https'
+  - 'dirmngr'
+  - 'gnupg'
+  - 'ca-certificates'
+  - 'mono-devel'
+  - 'sonarr'
+

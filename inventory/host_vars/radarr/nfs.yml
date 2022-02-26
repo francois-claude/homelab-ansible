@@ -1,0 +1,52 @@
+---
+nfs__host_shares:
+
+## TRUENAS MOVIES
+  - path: '/mnt/nfs/movies'
+    src: '10.10.70.20:/mnt/tank02/ds01/media/movies'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_long_timeo }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0770'
+    state: 'present'
+
+## TRUENAS DOCS
+  - path: '/mnt/nfs/docs'
+    src: '10.10.70.20:/mnt/tank02/ds01/media/docs'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_no_timeo }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0770'
+    state: 'present'
+
+## TRUENAS FRENCH
+  - path: '/mnt/nfs/french'
+    src: '10.10.70.20:/mnt/tank02/ds01/media/french'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_no_timeo }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0775'
+    state: 'present'
+
+## NZBGET SHARE
+  - path: '/mnt/nfs/nzbget'
+    src: '10.10.90.12:/radarr'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_no_timeo }}"
+    owner: '158'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+## RTPS SHARE
+  - path: '/mnt/nfs/rt_work'
+    src: '10.10.90.10:/rt_work'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_no_timeo }}"
+    owner: '2020'
+    group: '2030'
+    mode: '0750'
+    state: 'present'

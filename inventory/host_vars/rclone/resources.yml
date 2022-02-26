@@ -1,0 +1,144 @@
+---
+resources__host_paths:
+
+## create root mount dirs
+  - path: '/mnt'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+  - path: '/mnt/nfs'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+## rclone home dirs
+  - path: '/home/fclaude/rclone-scripts'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'directory'
+
+  - path: '/home/fclaude/rclone-scripts/archive'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'directory'
+
+  - path: '/var/log/rclone'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'directory'
+
+  - path: '/home/fclaude/.config'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'directory'
+
+  - path: '/home/fclaude/.config/rclone'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'directory'
+
+resources__host_files:
+
+## rclone configuration
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/dot_config/rclone/rclone.conf" }}'
+    dest: '/home/fclaude/.config/rclone/rclone.conf'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0600'
+    state: 'present'
+
+## rclone excludes list
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/dot_config/rclone/excludes.list" }}'
+    dest: '/home/fclaude/.config/rclone/excludes.list'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0600'
+    state: 'present'
+
+## rclone excludes list (default)
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/dot_config/rclone/excludes_default.list" }}'
+    dest: '/home/fclaude/.config/rclone/excludes_default.list'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0600'
+    state: 'present'
+
+## rclone backups script
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/rclone-scripts/backups.sh" }}'
+    dest: '/home/fclaude/rclone-scripts/backups.sh'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'present'
+
+## rclone docs script
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/rclone-scripts/docs.sh" }}'
+    dest: '/home/fclaude/rclone-scripts/docs.sh'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'present'
+
+## rclone french script
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/rclone-scripts/french.sh" }}'
+    dest: '/home/fclaude/rclone-scripts/french.sh'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'present'
+
+## rclone movies script
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/rclone-scripts/movies.sh" }}'
+    dest: '/home/fclaude/rclone-scripts/movies.sh'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'present'
+
+## rclone nextcloud script
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/rclone-scripts/nextcloud.sh" }}'
+    dest: '/home/fclaude/rclone-scripts/nextcloud.sh'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'present'
+
+## rclone tv script
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/rclone-scripts/tv.sh" }}'
+    dest: '/home/fclaude/rclone-scripts/tv.sh'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'present'
+
+## rclone uhd script
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/rclone-scripts/uhd.sh" }}'
+    dest: '/home/fclaude/rclone-scripts/uhd.sh'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'present'
+
+## rclone master-tmp script
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/rclone-scripts/master-tmp.sh" }}'
+    dest: '/home/fclaude/rclone-scripts/master-tmp.sh'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'present'
+
+## rclone rclone
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/rclone-scripts/rclone.sh" }}'
+    dest: '/home/fclaude/rclone.sh'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'present'

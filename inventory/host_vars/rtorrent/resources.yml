@@ -1,0 +1,560 @@
+---
+resources__host_paths:
+
+## REMOVE
+
+  - path: '/home/rtorrent/.local/profile.d'
+    state: 'absent'
+  
+  - path: '/home/rtorrent/.local/profile.d/rt-alias.sh'
+    state: 'absent'
+
+  - path: '/home/rtorrent/.bash_aliases'
+    state: 'absent'
+
+  - path: '/etc/nginx/sites-enabled/localhost.conf'
+    state: 'absent'
+
+  - path: '/etc/nginx/sites-available/localhost.conf'
+    state: 'absent'
+
+  - path: '/etc/nginx/sites-enabled/welcome.conf'
+    state: 'absent'
+
+  - path: '/etc/nginx/sites-available/welcome.conf'
+    state: 'absent'
+
+  - path: '/etc/nginx/sites-enabled/default'
+    state: 'absent'
+
+  - path: '/etc/nginx/sites-available/default'
+    state: 'absent'
+
+## TOUCH
+
+    # PYROTORQUE TRIGGER
+  - path: '/home/rtorrent/.pyroscope/run/pyrotorque'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0400'
+    state: 'touch'
+
+    # RT_WORK
+  - path: '/mnt/vols/rt_work/.mounted'
+    owner: 'rtorrent'
+    group: 'rtorrent'
+    mode: '0400'
+    state: 'touch'
+
+    # RT_SHARE
+  - path: '/mnt/vols/rt_share/.mounted'
+    owner: 'rtorrent'
+    group: 'rtorrent'
+    mode: '0400'
+    state: 'touch'
+
+## ROOT MOUNT DIRS
+
+    # MNT
+  - path: '/mnt'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+    # NFS
+  - path: '/mnt/nfs'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+    # VOLS
+  - path: '/mnt/vols'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+
+## MOUNT DOT FILES (CHECKED BY RTPS START SCRIPT AT RUNTIME) 
+
+    # NFS RT_WATCH
+  # - path: '/mnt/nfs/rt_watch/.mounted'
+  #   state: 'touch'
+
+    # NFS RT_SHARE
+  # - path: '/mnt/nfs/rt_share/.mounted'
+  #   state: 'touch'
+
+    # NFS BOOKS
+  # - path: '/mnt/nfs/books/.mounted'
+  #   state: 'touch'
+
+    # NFS MUSIC
+  # - path: '/mnt/nfs/music/.mounted'
+  #   state: 'touch'
+
+    # NFS PR0N
+  # - path: '/mnt/nfs/pr0n/.mounted'
+  #   state: 'touch'
+
+    # NFS TV
+  # - path: '/mnt/nfs/tv/.mounted'
+  #   state: 'touch'
+
+    # NFS DISCS
+  # - path: '/mnt/nfs/discs/.mounted'
+  #   state: 'touch'
+
+    # NFS DOCS
+  # - path: '/mnt/nfs/docs/.mounted'
+  #   state: 'touch'
+
+    # NFS FRENCH
+  # - path: '/mnt/nfs/french/.mounted'
+  #   state: 'touch'
+
+    # NFS MOVIES
+  # - path: '/mnt/nfs/movies/.mounted'
+  #   state: 'touch'
+
+    # NFS SHRED
+  # - path: '/mnt/nfs/shred/.mounted'
+  #   state: 'touch'
+
+    # NFS UHD
+  # - path: '/mnt/nfs/uhd/.mounted'
+  #   state: 'touch'
+
+    # NFS UHD DOCS
+  # - path: '/mnt/nfs/uhd_docs/.mounted'
+  #   state: 'touch'
+
+    # NFS UHD TV
+  # - path: '/mnt/nfs/uhd_tv/.mounted'
+  #   state: 'touch'
+
+
+resources__host_files:
+
+## RTPS HOME CONFIGS
+
+    # TMUX
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtps-tmux" }}'
+    dest: '/home/rtorrent/.tmux.conf'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0600'
+    state: 'present'
+
+    # DOT PROFILE
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtps-profile" }}'
+    dest: '/home/rtorrent/.profile'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0600'
+    state: 'present'
+
+    # DOT BASHRC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtps-bashrc" }}'
+    dest: '/home/rtorrent/.bashrc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0600'
+    state: 'present'
+
+    # DOT BASH COMPLETION
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtps-bash_completion" }}'
+    dest: '/home/rtorrent/.bash_completion'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0640'
+    state: 'present'
+
+    # RTPS ALIASES
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtps-aliases" }}'
+    dest: '/home/rtorrent/.rtps-aliases'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0600'
+    state: 'present'
+
+
+## SYSTEMD
+
+    # SYSTEM LIMITS (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system.conf.d/systemd-system-limits.conf" }}'
+    dest: '/etc/systemd/system.conf.d/systemd-system-limits.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'absent'
+
+    # USER LIMITS (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/systemd/user.conf.d/systemd-user-limits.conf" }}'
+    dest: '/etc/systemd/user.conf.d/systemd-user-limits.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+
+## NGINX
+
+    # RTPS NGINX SERVER
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/rtps.conf" }}'
+    dest: '/etc/nginx/sites-available/rtps.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0400'
+    state: 'present'
+
+
+## ETC
+
+    # SECURITY/NOFILE
+  - src: '{{ resources__src + ansible_hostname + "/etc/security/limits.d/rtorrent-nofile.conf" }}'
+    dest: '/etc/security/limits.d/rtorrent-nofile.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+  
+    # SECURITY/NPROC
+  - src: '{{ resources__src + ansible_hostname + "/etc/security/limits.d/rtorrent-nproc.conf" }}'
+    dest: '/etc/security/limits.d/rtorrent-nproc.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+
+## RTPS SCRIPTS
+
+    # RTUPTIME
+  - src: '{{ resources__src + ansible_hostname + "/rtps-scripts/rtuptime" }}'
+    dest: '/home/rtorrent/bin/rtuptime'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0750'
+    state: 'present'
+
+
+## PYROSCOPE CONFIG FILES
+
+    # BASH-COMPLETION
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/dot_pyroscope/bash-completion" }}'
+    dest: '/home/rtorrent/.pyroscope/bash-completion'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # BASH-COMPLETION (DEFAULT)
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/dot_pyroscope/bash-completion.default" }}'
+    dest: '/home/rtorrent/.pyroscope/bash-completion.default'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # CONFIG.INI
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/dot_pyroscope/config.ini" }}'
+    dest: '/home/rtorrent/.pyroscope/config.ini'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0640'
+    state: 'present'
+
+    # CONFIG.INI (DEFAULT)
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/dot_pyroscope/config.ini.default" }}'
+    dest: '/home/rtorrent/.pyroscope/config.ini.default'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # RTORRENT-PYRO
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/dot_pyroscope/rtorrent-pyro.rc" }}'
+    dest: '/home/rtorrent/.pyroscope/rtorrent-pyro.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # RTORRENT-PYRO (DEFAULT)
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/dot_pyroscope/rtorrent-pyro.rc.default" }}'
+    dest: '/home/rtorrent/.pyroscope/rtorrent-pyro.rc.default'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # TORQUE.INI
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/dot_pyroscope/torque.ini" }}'
+    dest: '/home/rtorrent/.pyroscope/torque.ini'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # TORQUE.INI (DEFAULT)
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/dot_pyroscope/torque.ini.default" }}'
+    dest: '/home/rtorrent/.pyroscope/torque.ini.default'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+
+## RTORRENT CONFIGS
+
+    # _RTOLOCAL.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/_rtlocal.rc" }}'
+    dest: '/home/rtorrent/rtorrent/_rtlocal.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # RTORRENT.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # _RUTORRENT.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/_rutorrent.rc" }}'
+    dest: '/home/rtorrent/rtorrent/_rutorrent.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # START
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/start" }}'
+    dest: '/home/rtorrent/rtorrent/start'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0744'
+    state: 'present'
+
+
+## RTORRENT.D
+
+    # 00-PYROCORE.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/00-pyrocore.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/00-pyrocore.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # 05-RT-PS-COLUMNS.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/05-rt-ps-columns.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/05-rt-ps-columns.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # 05-RT-PS-COLUMNS.RC.INCLUDE
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/05-rt-ps-columns.rc.include" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/05-rt-ps-columns.rc.include'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # 05-RT-PS-COLUMNS-V2.RC.INCLUDE
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/05-rt-ps-columns-v2.rc.include" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/05-rt-ps-columns-v2.rc.include'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # 10-INSTANCE-LAYOUT.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/10-instance-layout.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/10-instance-layout.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # 15-LOGGING.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/15-logging.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/15-logging.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # 20-HOST-VAR-SETTINGS.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/20-host-var-settings.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/20-host-var-settings.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # 20-SESSION-NAME.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/20-session-name.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/20-session-name.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # 30-RESOURCES.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/30-resources.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/30-resources.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # 50-PEERS.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/50-peers.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/50-peers.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # 50-PORT-BINDING.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/50-port-binding.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/50-port-binding.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # 50-TRACKERS.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/50-trackers.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/50-trackers.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # AUTOLABEL-CATEGORIES.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/autolabel-categories.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/autolabel-categories.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # BASH-COMPLETION-HANDLERS.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/bash-completion-handlers.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/bash-completion-handlers.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # CURL-OPTIONS.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/curl-options.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/curl-options.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # DISABLE-CONTROL-Q.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/disable-control-q.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/disable-control-q.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # NETWORK-HISTORY.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/network-history.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/network-history.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # START-NOCRON.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/START-NOCRON.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/START-NOCRON.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # TRACKER-ALIASES.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/tracker-aliases.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/tracker-aliases.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # VIEWS.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/views.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/views.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # WATCH-DIRS.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/watch-dirs.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/watch-dirs.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # WATCH-DIRS.RC.INCLUDE
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/watch-dirs.rc.include" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/watch-dirs.rc.include'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+    # WATCH-DISK-SPACE.RC
+  - src: '{{ resources__src + ansible_hostname + "/home/rtorrent/rtorrent/rtorrent.d/watch-disk-space.rc" }}'
+    dest: '/home/rtorrent/rtorrent/rtorrent.d/watch-disk-space.rc'
+    owner: 'rtorrent'
+    group: 'rtxmlrpc'
+    mode: '0644'
+    state: 'present'
+
+resources__host_commands:
+
+    # RELOAD SYSTEMD
+  - name: 'reload the systemd daemon'
+    shell: |
+      sleep 2 && systemctl daemon-reload && sleep 2
+
+
+    # REEXEC SYSTEMD
+  - name: 'running systemd daemon-reexec'
+    shell: |
+      sleep 2 && systemctl daemon-reexec && sleep 2
+
+
+  # ENABLE SYSTEMD-NETWORKD-WAIT-ONLINE
+  - name: 'enable systemd-networkd-wait-online.service if not enabled'
+    shell: |
+      if ! systemctl is-enabled systemd-networkd-wait-online.service ; then
+          systemctl enable systemd-networkd-wait-online.service
+      fi
+
+
+    # ENABLE FSTRIM SERVICE
+  - name: 'enable fstrim.service if not enabled'
+    shell: |
+      if ! systemctl is-enabled fstrim.service ; then
+          systemctl enable fstrim.service
+      fi
+

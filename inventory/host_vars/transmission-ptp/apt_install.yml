@@ -1,0 +1,7 @@
+---
+apt_install__host_packages:
+
+  - 'transmission-cli'
+  - 'transmission-common'
+  - 'transmission-daemon'
+

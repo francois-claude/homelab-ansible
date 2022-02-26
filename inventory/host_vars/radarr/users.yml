@@ -1,0 +1,20 @@
+---
+users__host_accounts:
+
+  - name: 'radarr'
+    user: True
+    system: True
+    admin: False
+    uid: '154'
+    gid: '154'
+    groups: [ 'labmedia' ]
+    comment: 'Radarr Daemon'
+    password_lock: True
+    linger: False
+    home: '/nonexistent'
+    create_home: False
+    generate_ssh_key: False
+    sshkeys_state: 'absent'
+    shell: '/usr/sbin/nologin'
+    state: 'present'
+    dotfiles_enabled: False

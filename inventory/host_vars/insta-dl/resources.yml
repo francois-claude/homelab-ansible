@@ -1,0 +1,10 @@
+---
+resources__host_files:
+
+    # INSTALOADER SCRIPT
+  - src: '{{ resources__src + ansible_hostname + "/home/insta-dl/instaloader.sh" }}'
+    dest: '/home/insta-dl/instaloader.sh'
+    owner: 'insta-dl'
+    group: 'insta-dl'
+    mode: '0700'
+    state: 'present'

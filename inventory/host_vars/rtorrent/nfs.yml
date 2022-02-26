@@ -1,0 +1,102 @@
+---
+nfs__host_shares:
+
+## TRUENAS BOOKS (READ/WRITE)
+  - path: '/mnt/nfs/books'
+    src: '10.10.70.20:/mnt/tank03/ds01/media/books'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_med_timeo }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+## TRUENAS MUSIC (READ/WRITE)
+  - path: '/mnt/nfs/music'
+    src: '10.10.70.20:/mnt/tank03/ds01/media/music'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_med_timeo }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+## TRUENAS MUSIC_SHARE (READ/WRITE)
+  - path: '/mnt/nfs/music_seed'
+    src: '10.10.70.20:/mnt/tank03/ds01/media/.downloads/music_seed'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_med_timeo }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+## TRUENAS PR0N (READ/WRITE)
+  - path: '/mnt/nfs/pr0n'
+    src: '10.10.70.20:/mnt/tank03/ds01/media/pr0n'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_med_timeo }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+# TRUENAS TV (READ/WRITE)
+  - path: '/mnt/nfs/tv'
+    src: '10.10.70.20:/mnt/tank03/ds01/media/tv'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_med_timeo }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+## TRUENAS DISCS (READ/WRITE)
+  - path: '/mnt/nfs/discs'
+    src: '10.10.70.20:/mnt/tank02/ds01/media/discs'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_med_timeo }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+# TRUENAS DOCS (READ/WRITE)
+  - path: '/mnt/nfs/docs'
+    src: '10.10.70.20:/mnt/tank02/ds01/media/docs'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_med_timeo }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+# TRUENAS FRENCH (READ/WRITE)
+  - path: '/mnt/nfs/french'
+    src: '10.10.70.20:/mnt/tank02/ds01/media/french'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_med_timeo }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+# TRUENAS MOVIES (READ/WRITE)
+  - path: '/mnt/nfs/movies'
+    src: '10.10.70.20:/mnt/tank02/ds01/media/movies'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_med_timeo }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+## TRUENAS SHRED (READ/WRITE)
+  - path: '/mnt/nfs/shred'
+    src: '10.10.70.20:/mnt/tank02/ds01/media/shred'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_med_timeo }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'

@@ -1,0 +1,30 @@
+---
+system_groups__host_list:
+
+# RTPS
+  - name: 'rtorrent'
+    user: False
+    system: False 
+    gid: '2020'
+    state: 'present'
+    members: 
+
+      - 'rtorrent'
+
+## RTXMLRPC
+  - name: 'rtxmlrpc'
+    user: False
+    system: False 
+    gid: '2030'
+    state: 'present'
+    members: 
+
+      - 'rtorrent'
+      - 'www-data'
+
+# LABMEDIA
+  - name: 'labmedia'
+    members: 
+
+      - 'fclaude'
+      - 'rtorrent'

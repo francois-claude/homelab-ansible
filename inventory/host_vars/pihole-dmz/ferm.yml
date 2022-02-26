@@ -1,0 +1,122 @@
+---
+ferm__iptables_backend_enabled: True
+
+ferm__iptables_backend_path: '/usr/sbin/iptables-legacy'
+
+ferm__host_rules:
+
+  - name: 'DEBOPS_accept_archbtw_80_pihole_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.100.10'
+    daddr: '10.10.130.30'
+    dport: '80'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from archbtw to pihole port 80/tcp'
+
+  - name: 'DEBOPS_accept_mbp_80_pihole_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.100.20'
+    daddr: '10.10.130.30'
+    dport: '80'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from mbp to pihole port 80/tcp'
+
+# NGINX
+  - name: 'DEBOPS_accept_nginx_53_pihole_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.130.10'
+    daddr: '10.10.130.30'
+    dport: '53'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from nginx to pihole port 53/tcp'
+
+  - name: 'DEBOPS_accept_nginx_53_pihole_udp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.130.10'
+    daddr: '10.10.130.30'
+    dport: '53'
+    protocol: 'udp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from nginx to pihole port 53/udp'
+
+# MATRIX
+  - name: 'DEBOPS_accept_matrix_53_pihole_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.130.20'
+    daddr: '10.10.130.30'
+    dport: '53'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from matrix to pihole port 53/tcp'
+
+  - name: 'DEBOPS_accept_matrix_53_pihole_udp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.130.20'
+    daddr: '10.10.130.30'
+    dport: '53'
+    protocol: 'udp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from matrix to pihole port 53/udp'
+
+# PLEX
+  - name: 'DEBOPS_accept_plex_53_pihole_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.130.21'
+    daddr: '10.10.130.30'
+    dport: '53'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from plex to pihole port 53/tcp'
+
+  - name: 'DEBOPS_accept_plex_53_pihole_udp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.130.21'
+    daddr: '10.10.130.30'
+    dport: '53'
+    protocol: 'udp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from plex to pihole port 53/udp'
+
+# PIHOLE GENERAL
+
+  - name: 'DEBOPS_reject_any_443_tcp'
+    type: 'accept'
+    accept_any: False
+    dport: '443'
+    protocol: 'tcp'
+    target: 'REJECT'
+    reject_with: 'tcp-reset'
+    rule_state: 'absent'
+    comment: 'reject incoming connections from any to pihole port 443/tcp'
+
+  - name: 'DEBOPS_reject_any_80_udp'
+    type: 'accept'
+    accept_any: False
+    dport: '80'
+    protocol: 'udp'
+    target: 'REJECT'
+    reject_with: 'icmp-port-unreachable'
+    rule_state: 'present'
+    comment: 'reject incoming connections from any to pihole port 80/udp'
+
+  - name: 'DEBOPS_reject_any_443_udp'
+    type: 'accept'
+    accept_any: False
+    dport: '443'
+    protocol: 'udp'
+    target: 'REJECT'
+    reject_with: 'icmp-port-unreachable'
+    rule_state: 'present'
+    comment: 'reject incoming connections from any to pihole port 443/udp'
+

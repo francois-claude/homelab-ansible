@@ -1,0 +1,82 @@
+---
+nfs__host_shares:
+
+## TRUENAS DOCS
+  - path: '/mnt/nfs/docs'
+    src: '10.10.70.20:/mnt/tank02/ds01/media/docs'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+## TRUENAS FRENCH
+  - path: '/mnt/nfs/french'
+    src: '10.10.70.20:/mnt/tank02/ds01/media/french'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+   
+## TRUENAS MOVIES
+  - path: '/mnt/nfs/movies'
+    src: '10.10.70.20:/mnt/tank02/ds01/media/movies'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+## TRUENAS UHD
+  - path: '/mnt/nfs/uhd'
+    src: '10.10.70.20:/mnt/tank02/ds01/media/uhd'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0755'
+    state: 'present'
+
+## TRUENAS UHD DOCS
+  - path: '/mnt/nfs/uhd_docs'
+    src: '10.10.70.20:/mnt/tank02/ds01/media/uhd_docs'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+## TRUENAS TV
+  - path: '/mnt/nfs/tv'
+    src: '10.10.70.20:/mnt/tank03/ds01/media/tv'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+## TRUENAS MUSIC
+  - path: '/mnt/nfs/music'
+    src: '10.10.70.20:/mnt/tank02/ds01/media/music'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+## TRUENAS SHRED
+  - path: '/mnt/nfs/shred'
+    src: '10.10.70.20:/mnt/tank02/ds01/media/shred'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'

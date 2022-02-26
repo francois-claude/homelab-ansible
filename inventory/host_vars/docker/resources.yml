@@ -1,0 +1,19 @@
+---
+resources__host_paths:
+
+## CREATE COMPOSE DIR
+  - path: '/home/fclaude/compose'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0750'
+    state: 'directory'
+
+resources__host_files:
+
+## DOCKER-COMPOSE FILE
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/compose/docker-compose.yml" }}'
+    dest: '/home/fclaude/compose/docker-compose.yml'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0640'
+    state: 'present'

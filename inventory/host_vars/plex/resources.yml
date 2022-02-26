@@ -1,0 +1,76 @@
+---
+resources__host_paths:
+
+  - path: '/lib/systemd/system/plexmediaserver.service.d'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'absent'
+
+  - path: '/etc/systemd/system/plexmediaserver.service.d'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+
+resources__host_files:
+
+    # I/O SCHEDULER FOR MOUNTED TRANSCODE SSD
+  - src: '{{ resources__src + ansible_hostname + "/etc/udev/rules.d/60-transcode-ssd-scheduler.rules" }}'
+    dest: '/etc/udev/rules.d/60-transcode-ssd-scheduler.rules'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+    # BLACKLIST
+  - src: '{{ resources__src + ansible_hostname + "/etc/modprobe.d/blacklist-nvidia-nouveau.conf" }}'
+    dest: '/etc/modprobe.d/blacklist-nvidia-nouveau.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+    # PLEX SYSTEMD SECURITY
+  - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system/plexmediaserver.service.d/plex-systemd-restrictions.conf" }}'
+    dest: '/etc/systemd/system/plexmediaserver.service.d/plex-systemd-restrictions.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+resources__host_commands:
+
+  - name: '...update grub...'
+    shell: |
+      sudo update-grub
+
+  - name: '...update initramfs...'
+    shell: |
+      sudo update-initramfs -u -k all
+
+  - name: 'Reload systemd and enable plexmediaserver.service'
+    shell: |
+      if ! systemctl is-enabled plexmediaserver.service ; then
+          systemctl daemon-reload
+          systemctl enable plexmediaserver.service 
+      fi
+
+      if ! systemctl is-active plexmediaserver.service ; then
+          systemctl daemon-reload
+          systemctl start plexmediaserver.service
+      fi
+
+  - name: 'Reload systemd and enable fstrim.service'
+    shell: |
+      if ! systemctl is-enabled fstrim.service ; then
+          systemctl daemon-reload
+          systemctl enable fstrim.service
+      fi
+
+      if ! systemctl is-active fstrim.service ; then
+          systemctl daemon-reload
+          systemctl start fstrim.service
+      fi
+

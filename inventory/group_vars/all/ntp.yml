@@ -1,0 +1,4 @@
+---
+ntp__daemon: 'systemd-timesyncd'
+
+ntp__servers: [ '{{ ansible_default_ipv4.gateway }}' ]

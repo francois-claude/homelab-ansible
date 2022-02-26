@@ -1,0 +1,16 @@
+---
+system_groups__host_list:
+
+# DEBIAN-DELUGED
+  - name: 'debian-deluged'
+    members: 
+
+      - 'fclaude'
+      - 'debian-deluged'
+
+# LABMEDIA
+  - name: 'labmedia'
+    members: 
+
+      - 'fclaude'
+      - 'debian-deluged'

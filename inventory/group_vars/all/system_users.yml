@@ -1,0 +1,40 @@
+---
+system_users__dotfiles_enabled: True
+#system_users__dotfiles_repo: 'https://github.com/whoiscoos/dotfiles-server.git'
+
+
+system_users__group_groups:
+
+  - name: 'labmedia'
+    user: False
+    system: False
+    gid: '50000'
+    state: 'present'
+
+system_users__group_accounts:
+
+  - name: 'fclaude'
+    groups: [ 'labmedia' ]
+    user: True
+    admin: True
+    uid: '1000'
+    gid: '1000'
+    password: $6$ffHqr8Zs4GugR8gz$PFxkgamkedPXJ2j.Nj3jv094KyKhI0AexTk2yAj1tT0rJZbOZNcZFWAdHyUDk0Pc50JearJRYe/OXS04Y.BjK.
+    update_password: 'always'
+    linger: False
+    state: 'present'
+    home: '/home/fclaude'
+    home_owner: 'fclaude'
+    home_group: 'fclaude'
+    home_mode: '0700'
+    create_home: True
+    move_home: True
+    generate_ssh_key: False
+    sshkeys: "{{ ssh_auth_keys_debops.fclaude_user }}"
+    sshkeys_exclusive: True
+    sshkeys_state: 'present'
+    shell: '/bin/bash'
+    dotfiles_enabled: True
+    dotfiles_repo: 'https://github.com/whoiscoos/dotfiles-server.git'
+    forward: '{{ ansible_hostname }}@fclaude.net'
+    forward_state: 'present'

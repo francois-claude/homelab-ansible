@@ -1,0 +1,14 @@
+---
+nfs__host_shares:
+
+## TRUENAS INSTAGRAM BACKUPS
+  - path: '/mnt/nfs/insta-dl'
+    src: '10.10.70.20:/mnt/tank03/ds03/backups/ig'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_med_timeo }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0770'
+    state: 'present'
+
+

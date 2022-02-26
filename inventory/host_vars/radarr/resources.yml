@@ -1,0 +1,149 @@
+---
+resources__host_paths:
+
+  - path: '/var/lib/lidarr/import/rtps'
+    state: 'absent'
+
+## CREATE ROOT MOUNT DIRS
+  - path: '/mnt'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+  - path: '/mnt/nfs'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+## RADARR LOG DIR
+  - path: '/var/log/radarr'
+    owner: 'radarr'
+    group: 'adm'
+    mode: '2750'
+    state: 'directory'
+
+## RADARR DATA DIR
+  - path: '/opt'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+  - path: '/opt/Radarr'
+    owner: 'radarr'
+    group: 'radarr'
+    mode: '0755'
+    state: 'directory'
+
+## RADARR SYMLINK LOGFILE
+  - dest: '/var/log/radarr/symlink.log'
+    owner: 'radarr'
+    group: 'adm'
+    mode: '0640'
+    state: 'touch'
+
+## RADARR HOME DIRS
+  - path: '/var/lib/radarr'
+    owner: 'radarr'
+    group: 'radarr'
+    mode: '0750'
+    state: 'directory'
+
+  - path: '/var/lib/radarr/scripts'
+    owner: 'radarr'
+    group: 'radarr'
+    mode: '0750'
+    state: 'directory'
+
+  - path: '/var/lib/sonarr/import'
+    owner: 'radarr'
+    group: 'radarr'
+    mode: '0750'
+    state: 'directory'
+
+
+
+## BIND MOUNTED (NO OWNER/GROUP)
+  - path: '/var/lib/radarr/import/rt_work'
+    mode: '0750'
+    state: 'directory'
+
+## BIND MOUNTED (NO OWNER/GROUP)
+  - path: '/var/lib/radarr/import/nzbget'
+    mode: '0750'
+    state: 'directory'
+
+
+
+  - path: '/var/lib/radarr/config'
+    owner: 'radarr'
+    group: 'radarr'
+    mode: '0750'
+    state: 'directory'
+
+resources__host_files:
+
+## RADARR SYSTEMD SERVICE FILE
+  - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system/radarr.service" }}'
+    dest: '/etc/systemd/system/radarr.service'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+## RADARR SYMLINK SCRIPT
+  - src: '{{ resources__src + ansible_hostname + "/radarr_scripts/radarr_symlink.sh" }}'
+    dest: '/var/lib/radarr/scripts/radarr_symlink.sh'
+    owner: 'radarr'
+    group: 'radarr'
+    mode: '0700'
+    state: 'present'
+
+## RADARR SYMLINK SCRIPT (ARCHIVE) (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/radarr_scripts/radarr_symlink_archive1.sh" }}'
+    dest: '/var/lib/radarr/scripts/radarr_symlink_archive1.sh'
+    owner: 'radarr'
+    group: 'radarr'
+    mode: '0700'
+    state: 'absent'
+
+## RADARR SYMLINK SCRIPT (OFFICIAL) (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/radarr_scripts/radarr_symlink_official.sh" }}'
+    dest: '/var/lib/radarr/scripts/radarr_symlink_official.sh'
+    owner: 'radarr'
+    group: 'radarr'
+    mode: '0700'
+    state: 'absent'
+
+## RADARR INSTALL SCRIPT (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/radarr_scripts/radarr_install.sh" }}'
+    dest: '/var/lib/radarr/scripts/radarr_install.sh'
+    owner: 'radarr'
+    group: 'radarr'
+    mode: '0700'
+    state: 'absent'
+    
+resources__host_archives:
+
+## RADARR SOURCE
+  - src: '{{ resources__src + "/radarr/Radarr.develop.3.0.0.4225.linux-core-x64.tar.gz" }}'
+    dest: '/opt/'
+    creates: '/opt/Radarr/Radarr.Update'
+    owner: 'radarr'
+    group: 'radarr'
+
+resources__host_commands:
+
+## RELOAD SYSTEMD DAEMON
+  - name: 'reload the systemd daemon'
+    shell: |
+      sleep 2 && systemctl daemon-reload && sleep 2
+
+## ENABLE SYSTEMD-NETWORKD-WAIT-ONLINE SERVICE
+  - name: 'enable systemd-networkd-wait-online.service if not enabled'
+    shell: |
+      if ! systemctl is-enabled systemd-networkd-wait-online.service ; then
+          systemctl enable systemd-networkd-wait-online.service
+      fi

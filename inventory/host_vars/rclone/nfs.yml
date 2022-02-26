@@ -1,0 +1,191 @@
+---
+nfs__host_shares:
+
+## truenas backups
+  - path: '/mnt/nfs/backups'
+    src: '10.69.69.1:/mnt/tank03/ds03/backups'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0770'
+    state: 'present'
+
+## truenas common
+  - path: '/mnt/nfs/common'
+    src: '10.69.69.1:/mnt/tank03/ds02/lab/common'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0755'
+    state: 'present'
+
+## truenas discs
+  - path: '/mnt/nfs/discs'
+    src: '10.69.69.1:/mnt/tank02/ds01/media/discs'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0775'
+    state: 'present'
+
+## truenas docs
+  - path: '/mnt/nfs/docs'
+    src: '10.69.69.1:/mnt/tank02/ds01/media/docs'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0775'
+    state: 'present'
+
+## truenas french
+  - path: '/mnt/nfs/french'
+    src: '10.69.69.1:/mnt/tank02/ds01/media/french'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0775'
+    state: 'present'
+
+## truenas movies
+  - path: '/mnt/nfs/movies'
+    src: '10.69.69.1:/mnt/tank02/ds01/media/movies'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0775'
+    state: 'present'
+
+## truenas pr0n
+  - path: '/mnt/nfs/pr0n'
+    src: '10.69.69.1:/mnt/tank03/ds01/media/pr0n'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0775'
+    state: 'present'
+
+## truenas pve_iso
+  - path: '/mnt/nfs/pve_iso'
+    src: '10.69.69.1:/mnt/tank03/ds02/lab/pve/iso'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0755'
+    state: 'present'
+
+## truenas pve_snapshots
+  - path: '/mnt/nfs/pve_snapshots'
+    src: '10.69.69.1:/mnt/tank03/ds02/lab/pve/snapshots'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0755'
+    state: 'present'
+
+## truenas pve_templates
+  - path: '/mnt/nfs/pve_templates'
+    src: '10.69.69.1:/mnt/tank03/ds02/lab/pve/templates'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0755'
+    state: 'present'
+
+## truenas tv
+  - path: '/mnt/nfs/tv'
+    src: '10.69.69.1:/mnt/tank03/ds01/media/tv'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0775'
+    state: 'present'
+
+
+## todo
+## truenas sports
+  - path: '/mnt/nfs/sports'
+    src: '10.69.69.1:/mnt/tank02/ds01/media/sports'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0755'
+    state: 'absent'
+
+## truenas uhd
+  - path: '/mnt/nfs/uhd'
+    src: '10.69.69.1:/mnt/tank02/ds01/media/uhd'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0775'
+    state: 'absent'
+
+## truenas uhd docs
+  - path: '/mnt/nfs/uhd_docs'
+    src: '10.69.69.1:/mnt/tank02/ds01/media/uhd_docs'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0775'
+    state: 'absent'
+
+## truenas books (absent)
+  - path: '/mnt/nfs/books'
+    src: '10.69.69.1:/mnt/tank02/ds01/media/books'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0755'
+    state: 'absent'
+
+## todo
+## truenas music (absent)
+  - path: '/mnt/nfs/music'
+    src: '10.69.69.1:/mnt/tank02/ds01/media/music'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0755'
+    state: 'absent'
+
+## todo
+## truenas software (absent)
+  - path: '/mnt/nfs/software'
+    src: '10.69.69.1:/mnt/tank02/ds01/media/software'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_ro + nfs_opts.safety + nfs_opts.systemd }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0755'
+    state: 'absent'
+
+  # - path: '/mnt/nfs/nextcloud'
+  #   src: '10.69.69.1:/mnt/tank03/ds03/nexclout'
+  #   state: 'absent'
+  #   fstype: 'nfs4'
+  #   owner: 'fclaude'
+  #   group: 'labmedia'
+  #   mode: '0770'
+  #   default_options: true
+  #   opts:
+  #     - 'ro'
+  #     - 'noauto'
+  #     - 'x-systemd.automount'
+  #     - 'x-systemd.idle-timeout=6h'
+  #     - 'x-systemd.after=network-online.target'

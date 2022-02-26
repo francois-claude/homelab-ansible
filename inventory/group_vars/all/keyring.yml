@@ -1,0 +1,15 @@
+---
+keyring__enabled: true
+
+keyring__local_path: '{{ inventory_dir | realpath + "/../keyring/" }}'
+
+keyring__keyserver: 'hkps://keyserver.ubuntu.com:443'
+
+keyring__dependent_gpg_keys:
+
+## import personal gpg key to keyring
+## keygrip
+ - id: 'B0F6 0CDA B8AE 4665 86F0  C750 4400 52BF C85F 8137'
+   state: 'present'
+
+

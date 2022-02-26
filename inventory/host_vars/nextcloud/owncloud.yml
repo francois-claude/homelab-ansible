@@ -1,0 +1,13 @@
+---
+owncloud__variant: 'nextcloud'
+owncloud__release: "20.0"
+
+owncloud__admin_username: 'admin-fclaude'
+owncloud__fqdn: 'cloud.fclaude.net'
+owncloud__domain: 'fclaude.net'
+owncloud__webserver: 'nginx'
+owncloud__password_length: '35'
+
+php__ini_memory_limit: '512M'
+owncloud__smb_support: False
+owncloud__redis_enabled: True

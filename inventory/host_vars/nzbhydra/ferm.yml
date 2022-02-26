@@ -1,0 +1,46 @@
+---
+ferm__host_rules:
+
+# NGINX (ABSENT)
+  - name: 'DEBOPS_accept_nginx_5076_nzbhydra_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.130.10'
+    daddr: '10.10.120.24'
+    dport: '5076'
+    protocol: 'tcp'
+    rule_state: 'absent'
+    comment: 'accept incoming connections from nginx to port 5076/tcp'
+
+# THREADRIPPER (PRESENT)
+  - name: 'DEBOPS_accept_threadripper_5076_nzbhydra_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.100.10'
+    daddr: '10.10.120.24'
+    dport: '5076'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from threadripper to port 5076/tcp'
+
+# MBP (PRESENT)
+  - name: 'DEBOPS_accept_mbp_5076_nzbhydra_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.100.20'
+    daddr: '10.10.120.24'
+    dport: '5076'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from mbp to port 5076/tcp'
+
+# NZBGET (PRESENT)
+  - name: 'DEBOPS_accept_nzbget_5076_nzbhydra_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.90.12'
+    daddr: '10.10.120.24'
+    dport: '5076'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from nzbhydra to port 5076/tcp'

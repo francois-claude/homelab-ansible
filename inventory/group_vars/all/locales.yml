@@ -1,0 +1,4 @@
+---
+locales__default_list: [ 'en_US.UTF-8' ]
+
+locales__system_lang: 'en_US.UTF-8'

@@ -1,0 +1,46 @@
+---
+ferm__host_rules:
+
+# TRANSMISSION RPC PORT (TCP)
+  - name: 'DEBOPS_accept_archbtw_9091_transmission_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.100.10'
+    daddr: '10.10.90.13'
+    dport: '9091'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from archbtw to port 9091/tcp'
+
+# TRANSMISSION RPC PORT (TCP)
+  - name: 'DEBOPS_accept_mbp_9091_transmission_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.100.20'
+    daddr: '10.10.90.13'
+    dport: '9091'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from mbp to port 9091/tcp'
+
+# TRANSMISSION RPC PORT (TCP)
+  - name: 'DEBOPS_accept_marionRR_9091_transmission_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.117.45.2'
+    daddr: '10.10.90.13'
+    dport: '9091'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from marionRR to port 9091/tcp'
+
+# TRANSMISSION TORRENT PORT (TCP)
+  - name: 'DEBOPS_accept_any_XXXXXXX_transmission_tcp'
+    type: 'accept'
+    accept_any: True
+    daddr: '10.10.90.10'
+    dport: '59971'
+    protocol: 'tcp'
+    rule_state: 'absent'
+    comment: 'accept incoming connections from any to port 59971/tcp'
+

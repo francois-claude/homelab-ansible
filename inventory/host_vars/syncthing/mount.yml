@@ -1,0 +1,13 @@
+---
+mount__host_binds:
+
+## IMPORT BIND MOUNTS
+  - src: '/mnt/nfs/syncthing/syncthing_server'
+    dest: '/var/lib/syncthing/syncthing_server'
+    state: 'present'
+    fstype: 'none'
+    opts:
+      - 'bind'
+      - '_netdev'
+      - 'x-systemd.automount'
+      - 'x-systemd.requires-mounts-for=/mnt/nfs/syncthing/syncthing_server'

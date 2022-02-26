@@ -1,0 +1,13 @@
+---
+apt_install__group_packages:
+
+## PACKAGES TO INSTALL ON ALL QEMU-KVM HOSTS
+
+  - name: 'qemu-guest-agent'
+    state: 'present'
+
+  - name: 'iotop'
+    state: 'present'
+
+  - name: 'vnstat'
+    state: 'present'

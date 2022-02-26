@@ -1,0 +1,19 @@
+resources__host_files:
+
+    # TRANMISSION SETTINGS
+  - src: '{{ resources__src + ansible_hostname + "/etc/transmission-daemon/settings.json" }}'
+    dest: '/etc/transmission-daemon/settings.json'
+    owner: 'debian-transmission'
+    group: 'debian-transmission'
+    mode: '0600'
+    state: 'present'
+
+    # PTP ARCHIVER SCRIPT
+  - src: '{{ resources__src + ansible_hostname + "/var/lib/transmission-daemon/archiver.py" }}'
+    dest: '/var/lib/transmission-daemon/archiver.py'
+    owner: 'debian-transmission'
+    group: 'debian-transmission'
+    mode: '0700'
+    state: 'present'
+
+

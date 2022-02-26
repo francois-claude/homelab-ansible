@@ -1,0 +1,147 @@
+---
+mount__host_devices:
+
+## MDADM RAID SSD
+  - src: 'UUID=f40078b2-3757-44aa-afae-472e0ab76543'
+    path: '/mnt/vols/nzbget'
+    fstype: 'ext4'
+    opts:
+      - 'defaults'
+    dump: '0'
+    passno: '2'
+    owner: 'nzbget'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+
+# mount__host_binds:
+
+# ## GENERAL EXPORT
+#    - src: '/mnt/vols/nzbget/completed/general'
+#      dest: '/srv/nfs/general'
+#      state: 'present'
+#      opts:
+#         - 'bind'
+#         - '_netdev'
+#         - 'x-systemd.automount'
+#         - 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/general'
+
+# ## MUSIC EXPORT
+#    - src: '/mnt/vols/nzbget/completed/music'
+#      dest: '/srv/nfs/music'
+#      state: 'present'
+#      opts:
+#         - 'bind'
+#         - '_netdev'
+#         - 'x-systemd.automount'
+#         - 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/music'
+
+# ## SOFTWARE EXPORT
+#    - src: '/mnt/vols/nzbget/completed/software'
+#      dest: '/srv/nfs/software'
+#      state: 'present'
+#      opts:
+#         - 'bind'
+#         - '_netdev'
+#         - 'x-systemd.automount'
+#         - 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/software'
+
+# ## RADARR_FRENCH EXPORT
+#    - src: '/mnt/vols/nzbget/completed/radarr_french'
+#      dest: '/srv/nfs/radarr_french'
+#      state: 'present'
+#      opts:
+#         - 'bind'
+#         - '_netdev'
+#         - 'x-systemd.automount'
+#         - 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/radarr_french'
+
+# ## RADARR_UHD_DOCS EXPORT
+#    - src: '/mnt/vols/nzbget/completed/radarr_uhd_docs'
+#      dest: '/srv/nfs/radarr_uhd_docs'
+#      state: 'present'
+#      opts:
+#         - 'bind'
+#         - '_netdev'
+#         - 'x-systemd.automount'
+#         - 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/radarr_uhd_docs'
+
+# ## MOVIES EXPORT
+#    - src: '/mnt/vols/nzbget/completed/movies'
+#      dest: '/srv/nfs/movies'
+#      state: 'present'
+#      opts:
+#         - 'bind'
+#         - '_netdev'
+#         - 'x-systemd.automount'
+#         - 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/movies'
+
+# ## SERIES EXPORT
+#    - src: '/mnt/vols/nzbget/completed/series'
+#      dest: '/srv/nfs/series'
+#      state: 'present'
+#      opts:
+#         - 'bind'
+#         - '_netdev'
+#         - 'x-systemd.automount'
+#         - 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/series'
+
+# ## PR0N EXPORT
+#    - src: '/mnt/vols/nzbget/completed/pr0n'
+#      dest: '/srv/nfs/pr0n'
+#      state: 'present'
+#      opts:
+#         - 'bind'
+#         - '_netdev'
+#         - 'x-systemd.automount'
+#         - 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/pr0n'
+
+# ## RADARR_UHD EXPORT
+#    - src: '/mnt/vols/nzbget/completed/radarr_uhd'
+#      dest: '/srv/nfs/radarr_uhd'
+#      state: 'present'
+#      opts:
+#         - 'bind'
+#         - '_netdev'
+#         - 'x-systemd.automount'
+#         - 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/radarr_uhd'
+  
+# ## RADARR_DOCS EXPORT
+#    - src: '/mnt/vols/nzbget/completed/radarr_docs'
+#      dest: '/srv/nfs/radarr_docs'
+#      state: 'present'
+#      opts:
+#         - 'bind'
+#         - '_netdev'
+#         - 'x-systemd.automount'
+#         - 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/radarr_docs'
+  
+# ## RADARR EXPORT
+#   - src: '/mnt/vols/nzbget/completed/radarr'
+#     dest: '/srv/nfs/radarr'
+#     state: 'absent'
+#     opts:
+#       - 'bind'
+#       - 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/radarr'
+  
+# ## SONARR EXPORT
+#   - src: '/mnt/vols/nzbget/completed/sonarr'
+#     dest: '/srv/nfs/sonarr'
+#     fstype: 'none'
+#     state: 'absent'
+#     opts:
+#       - 'bind'
+#       - 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/sonarr'
+
+# ## LIDARR EXPORT
+#    - src: '/mnt/vols/nzbget/completed/lidarr'
+#      dest: '/srv/nfs/lidarr'
+#      state: 'present'
+#      opts:
+#         - 'bind'
+#         - '_netdev'
+#         - 'x-systemd.automount'
+#         - 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/lidarr'
+
+

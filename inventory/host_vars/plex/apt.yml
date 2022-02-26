@@ -1,0 +1,17 @@
+---
+apt__nonfree: True
+
+apt__host_repositories:
+
+## OFFICIAL PLEX REPO
+  - repo: 'deb https://downloads.plex.tv/repo/deb public main'
+    architechture: 'amd64'
+    filename: 'plex'
+    state: 'present'
+    mode: '0400'
+
+apt__host_keys:
+
+## OFFICIAL PLEX REPO KEY
+  - url: 'https://downloads.plex.tv/plex-keys/PlexSign.key'
+    state: 'present'

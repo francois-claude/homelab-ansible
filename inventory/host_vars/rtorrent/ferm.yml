@@ -1,0 +1,26 @@
+---
+ferm__enabled: True
+ferm__iptables_backend_enabled: True
+ferm__iptables_backend_path: '/usr/sbin/iptables-legacy'
+
+ferm__host_rules:
+
+# RTPS TORRENT PORT (TCP)
+  - name: 'DEBOPS_accept_any_58583_rtorrent_tcp'
+    type: 'accept'
+    accept_any: True
+    daddr: '10.10.90.10'
+    dport: '58583'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from any to port 58583/tcp'
+
+# RTPS TORRENT PORT (UDP) ## DISABLED
+  - name: 'DEBOPS_accept_any_58583_rtorrent_udp'
+    type: 'accept'
+    accept_any: True
+    daddr: '10.10.90.10'
+    dport: '58583'
+    protocol: 'udp'
+    rule_state: 'absent'
+    comment: 'accept incoming connections from any to port 58583/udp'

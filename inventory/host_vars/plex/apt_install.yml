@@ -1,0 +1,8 @@
+---
+apt_install__host_packages:
+
+  - name: 'pkg-config'
+  - name: 'linux-headers-amd64'
+  - name: 'build-essential'
+  - name: 'plexmediaserver'
+  - name: 'libglvnd-dev'

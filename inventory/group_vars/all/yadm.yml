@@ -1,0 +1,18 @@
+---
+yadm__enabled: True
+yadm__dotfiles_enabled: True
+yadm__dotfiles_host: 'github.com'
+yadm__dotfiles_owner: 'whoiscoos'
+
+yadm__group_dotfiles:
+
+
+  - name: 'drybjed'
+    state: 'absent'
+
+  - name: 'whoiscoos'
+    gpg: 'B0F6 0CDA B8AE 4665 86F0  C750 4400 52BF C85F 8137'
+    git: 'https://github.com/whoiscoos/dotfiles-server.git'
+    state: 'present'
+
+

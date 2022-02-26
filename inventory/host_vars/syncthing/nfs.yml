@@ -1,0 +1,12 @@
+---
+nfs__host_shares:
+
+## TRUENAS SYNCTHING
+  - path: '/mnt/nfs/syncthing'
+    src: '10.10.70.20:/mnt/tank03/ds03/syncthing'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_no_timeo }}"
+    owner: 'sthing'
+    group: 'sthing'
+    mode: '0750'
+    state: 'present'

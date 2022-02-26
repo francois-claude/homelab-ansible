@@ -1,0 +1,20 @@
+---
+users__host_accounts:
+
+  - name: 'sonarr'
+    user: True
+    system: True
+    admin: False
+    uid: '153'
+    gid: '153'
+    groups: [ 'labmedia' ]
+    comment: 'Sonarr Daemon'
+    password_lock: True
+    linger: False
+    home: '/nonexistent'
+    create_home: False
+    generate_ssh_key: False
+    sshkeys_state: 'absent'
+    shell: '/usr/sbin/nologin'
+    state: 'present'
+    dotfiles_enabled: False

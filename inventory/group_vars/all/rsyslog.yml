@@ -1,0 +1,4 @@
+---
+rsyslog__enabled: False
+
+rsyslog__deploy_state: 'absent'

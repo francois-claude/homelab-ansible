@@ -1,0 +1,103 @@
+---
+resources__host_paths:
+
+## REMOVE DEFAULT SYNCTHING-RESUME SYSTEMD SERVICE FILE
+  - dest: '/lib/systemd/system/syncthing-resume.service'
+    state: 'absent'
+
+## REMOVE DEFAULT SYNCTHING-RESUME SYSTEMD SERVICE FILE
+  - dest: '/lib/systemd/system/syncthing@.service'
+    state: 'absent'
+
+## DELETE SYNCTHING DEFAULT SYNC DIR
+  - path: '/var/lib/syncthing/Sync'
+    state: 'absent'
+
+## CREATE ROOT MOUNT DIRS
+  - path: '/mnt'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+  - path: '/mnt/nfs'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+  
+## SYNCTHING CONFIG DIR
+  - path: '/etc/syncthing'
+    owner: 'sthing'
+    group: 'sthing'
+    mode: '0700'
+    state: 'directory'
+
+## SYNCTHING LOG DIR
+  - path: '/var/log/syncthing'
+    owner: 'sthing'
+    group: 'adm'
+    mode: '2750'
+    state: 'directory'
+
+## SYNCTHING LOG FILE
+  - path: '/var/log/syncthing/syncthing.log'
+    owner: 'sthing'
+    group: 'sthing'
+    mode: '0640'
+    state: 'touch'
+
+## SYNCTHING HOME DIR
+  - path: '/var/lib/syncthing'
+    owner: 'sthing'
+    group: 'sthing'
+    mode: '0750'
+    state: 'directory'
+
+## SYNCTHING DATA DIR
+  - path: '/var/lib/syncthing/data'
+    owner: 'sthing'
+    group: 'sthing'
+    mode: '0700'
+    state: 'directory'
+
+## SYNCTHING SYNC SERVER DIR
+  - path: '/var/lib/syncthing/syncthing_server'
+    owner: 'sthing'
+    group: 'sthing'
+    mode: '0750'
+    state: 'directory'
+
+## SYNCTHING NFS ROOT
+  - path: '/mnt/nfs'
+    owner: 'sthing'
+    group: 'sthing'
+    mode: '0755'
+    state: 'directory'
+
+resources__host_files:
+
+## SYNCTHING SYSTEMD SERVICE FILE
+  - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system/syncthing.service" }}'
+    dest: '/etc/systemd/system/syncthing.service'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+## SYNCTHING-RESUME SYSTEMD SERVICE FILE
+  - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system/syncthing-resume.service" }}'
+    dest: '/etc/systemd/system/syncthing-resume.service'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+resources__host_commands:
+
+## RELOAD SYSTEMD DAEMON
+  - name: 'reload the systemd daemon'
+    shell: |
+      sleep 2 && systemctl daemon-reload && sleep 2
+

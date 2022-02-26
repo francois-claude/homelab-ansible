@@ -1,0 +1,10 @@
+---
+apt_mark__host_packages:
+
+  - name: 'deluge-packages'
+    state: 'manual-hold'
+    packages:
+      - 'deluged'
+      - 'deluge-web'
+      - 'deluge-common'
+      - 'deluge-console'

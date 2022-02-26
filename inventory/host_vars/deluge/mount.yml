@@ -1,0 +1,14 @@
+---
+mount__host_devices:
+
+## DELUGE SEED VOLUME (MDADM RAID)
+  - src: 'UUID=aaa707bf-f12f-4ed0-9a19-24dea0f424c9'
+    path: '/mnt/vols/deluge'
+    fstype: 'ext4'
+    options: [ 'defaults' ]
+    dump: '0'
+    passno: '2'
+    owner: 'debian-deluged'
+    group: 'debian-deluged'
+    mode: '0770'
+    state: 'present'

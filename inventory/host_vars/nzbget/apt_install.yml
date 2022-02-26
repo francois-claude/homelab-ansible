@@ -1,0 +1,21 @@
+---
+apt_install__host_packages:
+
+  - 'build-essential'
+  - 'libncurses5-dev'
+  - 'libncurses6'
+  - 'libncurses-dev'
+  - 'libncursesw6'
+  - 'libssl-dev'
+  - 'libstdc++6'
+  - 'libstdc++-8-dev'
+  - 'libxml2'
+  - 'libxml2-dev'
+  - 'mdadm'
+  - 'ncurses-base'
+  - 'ncurses-bin'
+  - 'ncurses-term'
+  - 'p7zip-full'
+  - 'pkg-config'
+  - 'zlib1g-dev'
+

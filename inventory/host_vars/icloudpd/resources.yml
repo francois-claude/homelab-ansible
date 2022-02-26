@@ -1,0 +1,121 @@
+---
+resources__host_paths:
+
+## CREATE ROOT MOUNT DIRS
+  - path: '/mnt'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+  - path: '/mnt/nfs'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+## ICLOUDPD HOME DIRS
+  - path: '/home/fclaude/.cookies'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'directory'
+
+  - path: '/home/fclaude/.local'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'directory'
+
+  - path: '/home/fclaude/.sekrit'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'directory'
+
+  - path: '/home/fclaude/.local/share'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0755'
+    state: 'directory'
+
+  - path: '/home/fclaude/.local/share/python_keyring'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0755'
+    state: 'directory'
+
+  - path: '/home/fclaude/logs'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'directory'
+
+
+resources__host_files:
+
+## ICLOUDPD_FCLAUDE_BACKUP.SH
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/icloudpd_fclaude_backup.sh" }}'
+    dest: '/home/fclaude/icloudpd_fclaude_backup.sh'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'present'
+
+
+## ICLOUDPD_FCLAUDE_REAUTH.SH
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/icloudpd_fclaude_reauth.sh" }}'
+    dest: '/home/fclaude/icloudpd_fclaude_reauth.sh'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'present'
+
+
+## ICLOUDPD_TARBALL_ARCHIVE.SH
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/icloud_tarball_archive.sh" }}'
+    dest: '/home/fclaude/icloud_tarball_archive.sh'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'present'
+
+## PYTHON KEYRING CONFIGURATION
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/dot_local/share/python_keyring/keyringrc.cfg" }}'
+    dest: '/home/fclaude/.local/share/python_keyring/keyringrc.cfg'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0600'
+    state: 'present'
+
+## ICLOUDPD GMAIL PASSWORD
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/dot_sekrit/app_pw" }}'
+    dest: '/home/fclaude/.sekrit/.app_pw'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0400'
+    state: 'present'
+
+## ICLOUDPD ICLOUD EMAIL PERSONAL HIDDEN
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/dot_sekrit/icloud_username" }}'
+    dest: '/home/fclaude/.sekrit/.icloud_username'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0400'
+    state: 'present'
+
+## ICLOUDPD EMAIL HIDDEN
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/dot_sekrit/icloudpd_email" }}'
+    dest: '/home/fclaude/.sekrit/.icloudpd_email'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0400'
+    state: 'present'
+
+## NOTIFY EMAIL HIDDEN
+  - src: '{{ resources__src + ansible_hostname + "/home/fclaude/dot_sekrit/notify_email" }}'
+    dest: '/home/fclaude/.sekrit/.notify_email'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0400'
+    state: 'present'

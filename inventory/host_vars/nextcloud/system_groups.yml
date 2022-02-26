@@ -1,0 +1,10 @@
+---
+system_groups__group_list:
+
+# WWW-DATA
+  - name: 'www-data'
+    members: 
+
+      - 'fclaude'
+      - 'debops'
+      - 'www-data'

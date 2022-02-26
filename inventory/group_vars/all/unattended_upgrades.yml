@@ -1,0 +1,6 @@
+---
+unattended_upgrades__enabled: True
+
+unattended_upgrades__periodic_autoclean: '7'
+
+unattended_upgrades__remove_unused: True

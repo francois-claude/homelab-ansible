@@ -1,0 +1,157 @@
+---
+resources__host_paths:
+
+  - path: '/mnt/vols/nzbget/completed/general'
+    state: 'absent'
+
+  - path: '/mnt/vols/nzbget/completed/radarr_docs'
+    state: 'absent'
+
+  - path: '/mnt/vols/nzbget/completed/radarr_french'
+    state: 'absent'
+
+  - path: '/mnt/vols/nzbget/completed/radarr_uhd_docs'
+    state: 'absent'
+
+  - path: '/mnt/vols/nzbget/completed/radarr_uhd'
+    state: 'absent'
+
+## CREATE ROOT MOUNT DIRS
+  - path: '/mnt'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+  - path: '/mnt/vols'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+## NZBGET LOG DIR
+  - path: '/var/log/nzbget'
+    owner: 'nzbget'
+    group: 'adm'
+    mode: '2750'
+    state: 'directory'
+
+## NZBGET HOME DIRS
+  - path: '/var/lib/nzbget'
+    owner: 'nzbget'
+    group: 'nzbget'
+    mode: '0750'
+    state: 'directory'
+
+## NZBGET DOWNLOAD DIRS
+  - path: '/mnt/vols/nzbget/nzb'
+    owner: 'nzbget'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'directory'
+
+  - path: '/mnt/vols/nzbget/intermediate'
+    owner: 'nzbget'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'directory'
+
+  - path: '/mnt/vols/nzbget/completed/sonarr'
+    owner: 'nzbget'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'directory'
+
+  - path: '/mnt/vols/nzbget/completed/radarr'
+    owner: 'nzbget'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'directory'
+
+  - path: '/mnt/vols/nzbget/completed/radarr-uhd'
+    owner: 'nzbget'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'directory'
+
+  - path: '/mnt/vols/nzbget/completed/lidarr'
+    owner: 'nzbget'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'directory'
+
+  - path: '/mnt/vols/nzbget/completed/series'
+    owner: 'nzbget'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'directory'
+
+  - path: '/mnt/vols/nzbget/completed/software'
+    owner: 'nzbget'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'directory'
+
+  - path: '/mnt/vols/nzbget/completed/movies'
+    owner: 'nzbget'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'directory'
+
+  - path: '/mnt/vols/nzbget/completed/music'
+    owner: 'nzbget'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'directory'
+
+  - path: '/mnt/vols/nzbget/completed/pr0n'
+    owner: 'nzbget'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'directory'
+
+
+resources__host_files:
+
+## NZBGET SYSTEMD SERVICE FILE
+  - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system/nzbget.service" }}'
+    dest: '/etc/systemd/system/nzbget.service'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+
+resources__host_urls:
+
+## NZBGET INSTALL SCRIPT (ABSENT)
+  - src: 'https://nzbget.net/download/nzbget-latest-bin-linux.run'
+    dest: '/var/lib/nzbget-latest-bin-linux.run'
+    owner: 'fclaude'
+    group: 'fclaude'
+    mode: '0700'
+    state: 'absent'
+
+
+resources__host_commands:
+
+## RELOAD SYSTEMD DAEMON
+  - name: 'reload the systemd daemon'
+    shell: |
+      sleep 2 && systemctl daemon-reload && sleep 2
+
+## ENABLE SYSTEMD-NETWORKD-WAIT-ONLINE SERVICE
+  - name: 'enable systemd-networkd-wait-online.service if not enabled'
+    shell: |
+      if ! systemctl is-enabled systemd-networkd-wait-online.service ; then
+          systemctl enable systemd-networkd-wait-online.service
+      fi
+
+## ENABLE FSTRIM SERVICE
+  - name: 'enable fstrim.service if not enabled'
+    shell: |
+      if ! systemctl is-enabled fstrim.service ; then
+          systemctl enable fstrim.service
+      fi
+
+

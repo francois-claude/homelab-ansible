@@ -1,0 +1,102 @@
+---
+nfs_server__allow:
+
+  - '10.10.120.25' # SONARR
+  - '10.10.120.26' # RADARR
+  - '10.10.120.27' # RADARR-UHD
+  - '10.10.120.28' # LIDARR
+
+nfs_server__host_exports:
+
+## SONARR EXPORT
+  - path: '/srv/nfs/sonarr'
+    comment: 'nzbget to sonarr export'
+    owner: 'nzbget'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+    acl:
+
+        # SONARR
+      - clients: '10.10.120.25'
+        options: 
+          - 'rw'
+          - 'sync'
+          - 'all_squash'
+          - 'no_subtree_check'
+          - 'anonuid=158' # NZBGET UID
+          - 'anongid=158' # NZBGET UID
+
+    bind:
+      src: '/mnt/vols/nzbget/completed/sonarr'
+      options: [ 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/sonarr' ]
+
+  
+## RADARR EXPORT
+  - path: '/srv/nfs/radarr'
+    comment: 'nzbget to radarr export'
+    owner: 'nzbget'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+    acl:
+
+        # RADARR
+      - clients: '10.10.120.26'
+        options: 
+          - 'rw'
+          - 'sync'
+          - 'all_squash'
+          - 'no_subtree_check'
+          - 'anonuid=158' # NZBGET UID
+          - 'anongid=158' # NZBGET UID
+    
+    bind:
+      src: '/mnt/vols/nzbget/completed/radarr'
+      options: [ 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/radarr' ]
+
+## RADARR-UHD EXPORT
+  - path: '/srv/nfs/radarr-uhd'
+    comment: 'nzbget to radarr-uhd export'
+    owner: 'nzbget'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+    acl:
+
+        # RADARR-UHD
+      - clients: '10.10.120.27'
+        options: 
+          - 'rw'
+          - 'sync'
+          - 'all_squash'
+          - 'no_subtree_check'
+          - 'anonuid=158' # NZBGET UID
+          - 'anongid=158' # NZBGET UID
+    
+    bind:
+      src: '/mnt/vols/nzbget/completed/radarr-uhd'
+      options: [ 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/radarr-uhd' ]
+
+## LIDARR EXPORT
+  - path: '/srv/nfs/lidarr'
+    comment: 'nzbget to lidarr export'
+    owner: 'nzbget'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+    acl:
+
+        # RADARR-UHD
+      - clients: '10.10.120.28'
+        options: 
+          - 'rw'
+          - 'sync'
+          - 'all_squash'
+          - 'no_subtree_check'
+          - 'anonuid=158' # NZBGET UID
+          - 'anongid=158' # NZBGET UID
+    
+    bind:
+      src: '/mnt/vols/nzbget/completed/lidarr'
+      options: [ 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/lidarr' ]

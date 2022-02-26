@@ -1,0 +1,10 @@
+---
+apt_install__group_packages:
+
+## PACKAGES TO REMOVE FROM ALL LXC HOSTS
+
+  - name: 'iotop'
+    state: 'absent'
+
+  - name: 'vnstat'
+    state: 'absent'

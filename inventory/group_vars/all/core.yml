@@ -1,0 +1,7 @@
+---
+core__admin_private_email: [ '{{ ansible_hostname }}@fclaude.net' ]
+  
+core__admin_public_email: [ 'root@{{ ansible_fqdn }}' ]
+
+core__ansible_controllers: [ '10.10.120.15/24' ]
+

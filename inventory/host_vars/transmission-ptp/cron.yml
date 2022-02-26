@@ -1,0 +1,11 @@
+---
+cron__crontab_host_jobs:
+
+## PTP SCRIPT
+  - name: 'ptp_archiver_cronjob'
+    user: 'debian-transmission'
+    special_time: '* */4 * * * *'
+    job: '/var/lib/transmission-daemon/archiver.py 2>&1 >> /var/lib/transmission-daemon/archiver.log'
+    state: 'absent'
+    disabled: True
+

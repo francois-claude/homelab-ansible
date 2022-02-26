@@ -1,0 +1,134 @@
+---
+resources__host_paths:
+
+  - path: '/var/lib/lidarr/import/rtps'
+    state: 'absent'
+
+## CREATE ROOT MOUNT DIRS
+  - path: '/mnt'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+  - path: '/mnt/nfs'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+## LIDARR LOG DIR
+  - path: '/var/log/lidarr'
+    owner: 'lidarr'
+    group: 'adm'
+    mode: '2750'
+    state: 'directory'
+
+## LIDARR DATA DIR
+  - path: '/opt'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+  - path: '/opt/Lidarr'
+    owner: 'lidarr'
+    group: 'lidarr'
+    mode: '0755'
+    state: 'directory'
+
+## LIDARR SYMLINK LOGFILE
+  - dest: '/var/log/lidarr/symlink.log'
+    owner: 'lidarr'
+    group: 'adm'
+    mode: '0640'
+    state: 'touch'
+
+## LIDARR HOME DIRS
+  - path: '/var/lib/lidarr'
+    owner: 'lidarr'
+    group: 'lidarr'
+    mode: '0750'
+    state: 'directory'
+
+  - path: '/var/lib/lidarr/scripts'
+    owner: 'lidarr'
+    group: 'lidarr'
+    mode: '0750'
+    state: 'directory'
+
+  - path: '/var/lib/lidarr/import'
+    owner: 'lidarr'
+    group: 'lidarr'
+    mode: '0750'
+    state: 'directory'
+
+
+
+## BIND MOUNTED (NO OWNER/GROUP)
+  - path: '/var/lib/lidarr/import/rt_work'
+    mode: '0750'
+    state: 'directory'
+
+## BIND MOUNTED (NO OWNER/GROUP)
+  - path: '/var/lib/lidarr/import/nzbget'
+    mode: '0750'
+    state: 'directory'
+
+
+
+  - path: '/var/lib/lidarr/config'
+    owner: 'lidarr'
+    group: 'lidarr'
+    mode: '0750'
+    state: 'directory'
+
+resources__host_files:
+
+## LIDARR SYSTEMD SERVICE FILE
+  - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system/lidarr.service" }}'
+    dest: '/etc/systemd/system/lidarr.service'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+# ## LIDARR SYMLINK SCRIPT
+#   - src: '{{ resources__src + ansible_hostname + "/lidarr_scripts/lidarr_symlink.sh" }}'
+#     dest: '/var/lib/lidarr/scripts/lidarr_symlink.sh'
+#     owner: 'lidarr'
+#     group: 'lidarr'
+#     mode: '0700'
+#     state: 'present'
+
+# ## LIDARR SYMLINK SCRIPT (ARCHIVE) (ABSENT)
+#   - src: '{{ resources__src + ansible_hostname + "/lidarr_scripts/lidarr_symlink_archive1.sh" }}'
+#     dest: '/var/lib/lidarr/scripts/lidarr_symlink_archive1.sh'
+#     owner: 'lidarr'
+#     group: 'lidarr'
+#     mode: '0700'
+#     state: 'absent'
+
+resources__host_archives:
+
+## LIDARR BINARIES
+  - src: '{{ resources__src + ansible_hostname + "/Lidarr.master.0.7.2.1878.linux.tar.gz" }}'
+    dest: '/opt/'
+    creates: '/opt/Lidarr'
+    owner: 'lidarr'
+    group: 'lidarr'
+
+resources__host_commands:
+
+## RELOAD SYSTEMD DAEMON
+  - name: 'reload the systemd daemon'
+    shell: |
+      sleep 2 && systemctl daemon-reload && sleep 2
+
+## ENABLE SYSTEMD-NETWORKD-WAIT-ONLINE SERVICE
+  - name: 'enable systemd-networkd-wait-online.service if not enabled'
+    shell: |
+      if ! systemctl is-enabled systemd-networkd-wait-online.service ; then
+          systemctl enable systemd-networkd-wait-online.service
+      fi
+

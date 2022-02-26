@@ -1,0 +1,13 @@
+---
+ferm__host_rules:
+
+  - name: 'DEBOPS_accept_nginx_8181_tautulli_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.130.10'
+    daddr: '10.10.120.21'
+    dport: '8181'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from nginx to port 8181/tcp'
+

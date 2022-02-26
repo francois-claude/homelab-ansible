@@ -1,0 +1,13 @@
+---
+nfs__host_shares:
+
+## TRUENAS PTP_SHARE (READ/WRITE)
+  - path: '/mnt/nfs/ptp_seed'
+    src: '10.10.70.20:/mnt/tank03/ds01/media/.downloads/ptp_seed'
+    fstype: 'nfs4'
+    opts: "{{ nfs_opts.def_rw + nfs_opts.safety + nfs_opts.systemd_med_timeo }}"
+    owner: 'fclaude'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+

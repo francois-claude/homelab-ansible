@@ -1,0 +1,13 @@
+---
+mount__host_binds:
+
+## BIND MOUNT NFS SHARE TO NEXTCLOUD HOME DIR
+  - src: '/mnt/nfs/nextcloud/data'
+    dest: '/srv/www/nextcloud/data'
+    state: 'present'
+    fstype: 'nfs4'
+    opts:
+      - 'bind'
+      - '_netdev'
+      - 'x-systemd.requires-mounts-for=/mnt/nfs/nextcloud'
+

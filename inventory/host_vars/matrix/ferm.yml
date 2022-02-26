@@ -1,0 +1,49 @@
+---
+ferm__iptables_backend_enabled: True
+
+ferm__iptables_backend_path: '/usr/sbin/iptables-legacy'
+
+ferm__default_policy_forward: 'ACCEPT'
+                                                                                                                                                          
+ferm__host_rules:    
+
+  - name: 'DEBOPS_accept_nginx_8090_matrix_identity_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.130.10'
+    daddr: '10.10.130.20'
+    dport: '8090'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from nginx to matrix identity server port 8090/tcp'
+
+  - name: 'DEBOPS_accept_nginx_8008_matrix_synapse_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.130.10'
+    daddr: '10.10.130.20'
+    dport: '8008'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from nginx to matrix synapse server encrypted port 8008/tcp'
+
+  - name: 'DEBOPS_accept_nginx_8048_matrix_synapse_unencrypt_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.130.10'
+    daddr: '10.10.130.20'
+    dport: '8048'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from nginx to matrix synapse server unencrypted port 8048/tcp'
+
+  - name: 'DEBOPS_accept_nginx_8765_matrix_element_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.130.10'
+    daddr: '10.10.130.20'
+    dport: '8765'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from nginx to matrix element client on port 8765/tcp'
+

@@ -1,0 +1,6 @@
+---
+sysctl__host_parameters:
+  - name: 'syncthing_user_watches'
+    options:
+    
+      - fs.inotify.max_user_watches: 204800

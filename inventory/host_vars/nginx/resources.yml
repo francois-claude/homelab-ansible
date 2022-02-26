@@ -1,0 +1,546 @@
+---
+resources__host_paths:
+
+# NGINX DEFAULT CONFIGURATION
+  - path: '/etc/nginx/sites-available/default'
+    state: 'absent'
+
+## NGINX SNIPPETS DIR
+  - path: '/etc/nginx/snippets'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+## NGINX SEKRITS DIR
+  - path: '/etc/nginx/.sekrit'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+      - etype: 'user'
+        entity: 'www-data'
+        permissions: 'rwX'
+        state: 'present'
+
+## NGINX STATIC FILES (HOSTING)
+  - path: '/var/www/static-files/.well-known/matrix'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+      - etype: 'user'
+        entity: 'www-data'
+        permissions: 'rwX'
+        state: 'present'
+
+
+## NGINX LOG DIR
+  - path: '/var/log/nginx'
+    owner: 'root'
+    group: 'adm'
+    mode: '0750'
+    state: 'directory'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+## CERTBOT ETC DIR
+  - path: '/etc/certbot'
+    owner: 'root'
+    group: 'root'
+    mode: '0750'
+    state: 'directory'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+## CLOUDFLARE ETC DIR
+  - path: '/etc/cloudflare'
+    owner: 'root'
+    group: 'root'
+    mode: '0750'
+    state: 'directory'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+## CLOUDFLARE ETC SEKRIT
+  - path: '/etc/cloudflare/.sekrit'
+    owner: 'root'
+    group: 'root'
+    mode: '0750'
+    state: 'directory'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+resources__host_files:
+
+# NGINX CONFIGURATION
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/nginx.conf" }}'
+    dest: '/etc/nginx/nginx.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+# STATIC HTML FILES
+  - src: '{{ resources__src + ansible_hostname + "/var/www/html/base-domain.html" }}'
+    dest: '/var/www/html/base-domain.html'
+    owner: 'root'
+    group: 'root'
+    mode: '0444'
+    state: 'present'
+
+  - src: '{{ resources__src + ansible_hostname + "/var/www/static-files/.well-known/matrix/client" }}'
+    dest: '/var/www/static-files/.well-known/matrix/client'
+    owner: 'root'
+    group: 'root'
+    mode: '0444'
+    state: 'present'
+
+  - src: '{{ resources__src + ansible_hostname + "/var/www/static-files/.well-known/matrix/server" }}'
+    dest: '/var/www/static-files/.well-known/matrix/server'
+    owner: 'root'
+    group: 'root'
+    mode: '0444'
+    state: 'present'
+
+# FASTCGI SNIPPET
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/snippets/fastcgi-php.conf" }}'
+    dest: '/etc/nginx/snippets/fastcgi-php.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+# SNAKEOIL SNIPPET
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/snippets/snakeoil.conf" }}'
+    dest: '/etc/nginx/snippets/snakeoil.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+# HTPASSWD SNIPPET (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/dot_sekrit/dot_htpasswd_additive" }}'
+    dest: '/etc/nginx/.sekrit/.htpasswd_additive'
+    owner: 'root'
+    group: 'root'
+    mode: '0400'
+    state: 'absent'
+    acl:
+      - etype: 'user'
+        entity: 'www-data'
+        permissions: 'r'
+        state: 'absent'
+
+## CLOUDFLARE CONFIGURATIONS
+
+# KEYS 1 
+  - src: '{{ resources__src + ansible_hostname + "/etc/cloudflare/dot_sekrit/cloudflare-primary.ini" }}'
+    dest: '/etc/cloudflare/.sekrit/cloudflare-primary.ini'
+    owner: 'root'
+    group: 'root'
+    mode: '0400'
+    state: 'present'
+
+# KEYS 2
+  - src: '{{ resources__src + ansible_hostname + "/etc/cloudflare/dot_sekrit/cloudflare-secondary.ini" }}'
+    dest: '/etc/cloudflare/.sekrit/cloudflare-secondary.ini'
+    owner: 'root'
+    group: 'root'
+    mode: '0400'
+    state: 'present'
+
+# UFW SCRIPT (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/cloudflare/cloudflare-ufw.sh" }}'
+    dest: '/etc/cloudflare/cloudflare-ufw.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    state: 'absent'
+
+## NGINX SITES
+
+# BASE DOMAIN
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/base-domain.conf" }}'
+    dest: '/etc/nginx/sites-available/base-domain.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+# PLEX
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/plex.conf" }}'
+    dest: '/etc/nginx/sites-available/plex.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+# NEXTCLOUD
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/nextcloud.conf" }}'
+    dest: '/etc/nginx/sites-available/nextcloud.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+# TAUTULLI (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/tautulli.conf" }}'
+    dest: '/etc/nginx/sites-available/tautulli.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'absent'
+
+# BITWARDEN
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/bitwarden.conf" }}'
+    dest: '/etc/nginx/sites-available/bitwarden.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'absent'
+
+# SYNC
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/sync.conf" }}'
+    dest: '/etc/nginx/sites-available/sync.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+# SYNAPSE
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/synapse.conf" }}'
+    dest: '/etc/nginx/sites-available/synapse.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'absent'
+
+# MATRIX
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/matrix.conf" }}'
+    dest: '/etc/nginx/sites-available/matrix.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+# MATRIX
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/matrix-fed.conf" }}'
+    dest: '/etc/nginx/sites-available/matrix-fed.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+# ELEMENT
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/element.conf" }}'
+    dest: '/etc/nginx/sites-available/element.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+# CANVAS (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/canvas.conf" }}'
+    dest: '/etc/nginx/sites-available/canvas.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'absent'
+
+# CRAM (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/cram.conf" }}'
+    dest: '/etc/nginx/sites-available/cram.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'absent'
+
+# JACKETT (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/jackett.conf" }}'
+    dest: '/etc/nginx/sites-available/jackett.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'absent'
+
+# REQUEST (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/request.conf" }}'
+    dest: '/etc/nginx/sites-available/request.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'absent'
+
+# KIBANA (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/kibana.conf" }}'
+    dest: '/etc/nginx/sites-available/kibana.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'absent'
+
+# RSS (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/rss.conf" }}'
+    dest: '/etc/nginx/sites-available/rss.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'absent'
+
+# DELUGE (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/deluge.conf" }}'
+    dest: '/etc/nginx/sites-available/deluge.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'absent'
+
+# IRC (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/irc.conf" }}'
+    dest: '/etc/nginx/sites-available/irc.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'absent'
+
+# NZBGET (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/nzbget.conf" }}'
+    dest: '/etc/nginx/sites-available/nzbget.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'absent'
+
+# DEFAULT (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/nginx/sites-available/default_site_debian_10.conf" }}'
+    dest: '/etc/nginx/sites-available/default.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'absent'
+
+## CERTBOT CONFIGURATIONS
+# JACKETT (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/certbot/certbot-jackett.sh" }}'
+    dest: '/etc/certbot/certbot-jackett.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    state: 'absent'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+# JACKETT (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/certbot/certbot-jackett.sh" }}'
+    dest: '/etc/certbot/certbot-jackett.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    state: 'absent'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+# KIBANA (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/certbot/certbot-kibana.sh" }}'
+    dest: '/etc/certbot/certbot-kibana.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    state: 'absent'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+# NEXTCLOUD (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/certbot/certbot-nextcloud.sh" }}'
+    dest: '/etc/certbot/certbot-nextcloud.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    state: 'absent'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+# PLEX (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/certbot/certbot-plex.sh" }}'
+    dest: '/etc/certbot/certbot-plex.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    state: 'absent'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+# POPCORN (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/certbot/certbot-popcorn.sh" }}'
+    dest: '/etc/certbot/certbot-popcorn.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    state: 'absent'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+# REQUEST (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/certbot/certbot-request.sh" }}'
+    dest: '/etc/certbot/certbot-request.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    state: 'absent'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+# REQUESTS (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/certbot/certbot-requests.sh" }}'
+    dest: '/etc/certbot/certbot-requests.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    state: 'absent'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+# RSS (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/certbot/certbot-rss.sh" }}'
+    dest: '/etc/certbot/certbot-rss.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    state: 'absent'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+# SYNC (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/certbot/certbot-sync.sh" }}'
+    dest: '/etc/certbot/certbot-sync.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    state: 'absent'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+# TAUTULLI (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/certbot/certbot-tautulli.sh" }}'
+    dest: '/etc/certbot/certbot-tautulli.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    state: 'absent'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+# BITWARDEN (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/certbot/certbot-bitwarden.sh" }}'
+    dest: '/etc/certbot/certbot-bitwarden.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    state: 'absent'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+# CANVAS (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/certbot/certbot-canvas.sh" }}'
+    dest: '/etc/certbot/certbot-canvas.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    state: 'absent'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+# CRAM (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/certbot/certbot-cram.sh" }}'
+    dest: '/etc/certbot/certbot-cram.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    state: 'absent'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+# SYNAPSE (PRESENT)
+  - src: '{{ resources__src + ansible_hostname + "/etc/certbot/certbot-synapse.sh" }}'
+    dest: '/etc/certbot/certbot-synapse.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0700'
+    state: 'absent'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'

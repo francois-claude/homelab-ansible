@@ -1,0 +1,21 @@
+---
+resources__host_paths: []
+
+resources__host_files:
+
+## JACKETT SYSTEMD SCRIPT
+  - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system/jackett.service" }}'
+    dest: '/etc/systemd/system/jackett.service'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+resources__host_archives:
+
+## JACKETT BINARIES
+  - src: '{{ resources__src + ansible_hostname + "/Jackett.Binaries.LinuxAMDx64.tar.gz" }}'
+    dest: '/opt/'
+    creates: '/opt/Jackett'
+    owner: 'jackett'
+    group: 'jackett'

@@ -1,0 +1,3 @@
+---
+#apt__default_mirrors_lookup: 'raspbian'
+#apt__default_sources_lookup: 'raspbian'

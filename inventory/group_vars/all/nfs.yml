@@ -1,0 +1,56 @@
+---
+nfs__default_mount_type: 'nfs4'
+
+## NFS OPTION GLOBAL VARIABLES
+nfs_opts:
+
+  ## DEFAULTS FOR READ/WRITE SHARES
+  def_rw:
+    - 'rw'
+    - 'vers=4'
+    - 'proto=tcp'
+    - 'port=2049'
+    - 'minorversion=1'
+    - '_netdev'
+    - 'hard'
+    - 'intr'
+    - 'auto'
+    - 'timeo=600'    # DEFAULT
+    - 'retrans=2'    # DEFAULT
+
+  ## DEFAULTS FOR READ ONLY SHARES
+  def_ro:
+    - 'ro'
+    - 'vers=4'
+    - 'proto=tcp'
+    - 'port=2049'
+    - 'minorversion=1'
+    - '_netdev'
+    - 'hard'
+    - 'intr'
+    - 'auto'
+    - 'timeo=600'    # DEFAULT
+    - 'retrans=2'    # DEFAULT
+    - 'nocto'
+
+  ## DEFAULTS FOR ALL SHARES
+  safety:
+    - 'nosuid'
+    - 'nodev'
+    - 'noexec'
+
+  ## DEFAULTS WHEN USING SYSTEMD AUTOMOUNT
+  systemd:
+    - 'x-systemd.automount'
+    - 'x-systemd.idle-timeout=1h'
+
+  systemd_med_timeo:
+    - 'x-systemd.automount'
+    - 'x-systemd.idle-timeout=6h'
+  
+  systemd_long_timeo:
+    - 'x-systemd.automount'
+    - 'x-systemd.idle-timeout=12h'
+
+  systemd_no_timeo:
+    - 'x-systemd.automount'

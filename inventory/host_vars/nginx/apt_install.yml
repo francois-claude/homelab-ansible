@@ -1,0 +1,7 @@
+---
+apt_install__host_packages:
+
+   - 'nginx-extras'
+   - 'python3-certbot-dns-cloudflare'
+   - 'certbot'
+   - 'apache2-utils'

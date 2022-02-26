@@ -1,0 +1,6 @@
+---
+fail2ban_jails:
+
+  - name: 'ssh'
+    enabled: 'true'
+    action: 'action_mw'

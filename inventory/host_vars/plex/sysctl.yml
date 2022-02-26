@@ -1,0 +1,15 @@
+---
+sysctl__hardening_ipv6_disabled: False
+sysctl__tcp_performance_enabled: True
+
+sysctl__host_parameters:
+
+  - name: 'max-user-watches'
+    options:
+      - 'fs.inotify.max_user_watches': 262144
+
+
+  - name: 'congestion-control'
+    options:
+      - 'net.core.default_qdisc': fq
+      - 'net.ipv4.tcp_congestion_control': bbr

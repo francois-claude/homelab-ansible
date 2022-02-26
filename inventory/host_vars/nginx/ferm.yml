@@ -1,0 +1,34 @@
+---
+ferm__iptables_backend_enabled: True
+
+ferm__iptables_backend_path: '/usr/sbin/iptables-legacy'
+
+ferm__host_rules:
+
+# NGINX
+  - name: 'DEBOPS_accept_port_80_any_nginx'
+    type: 'accept'
+    accept_any: True
+    daddr: '10.10.130.10'
+    dport: '80'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from any to port 80/tcp'
+
+  - name: 'DEBOPS_accept_port_443_any_nginx'
+    type: 'accept'
+    accept_any: True
+    daddr: '10.10.130.10'
+    dport: '443'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from any to port 443/tcp'
+
+  - name: 'DEBOPS_accept_port_8448_any_nginx'
+    type: 'accept'
+    accept_any: True
+    daddr: '10.10.130.10'
+    dport: '8448'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from any to port 8448/tcp'

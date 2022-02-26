@@ -1,0 +1,13 @@
+---
+ferm__host_rules:
+
+# NGINX
+  - name: 'DEBOPS_accept_nginx_9117_jackett_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.130.10'
+    daddr: '10.10.120.23'
+    dport: '9117'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from nginx to port 9117/tcp'

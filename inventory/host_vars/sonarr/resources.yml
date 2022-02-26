@@ -1,0 +1,108 @@
+---
+resources__host_paths:
+
+  - path: '/var/lib/lidarr/import/rtps'
+    state: 'absent'
+
+## CREATE ROOT MOUNT DIRS
+  - path: '/mnt'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+  - path: '/mnt/nfs'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+## SONARR LOG DIR
+  - path: '/var/log/sonarr'
+    owner: 'sonarr'
+    group: 'adm'
+    mode: '2750'
+    state: 'directory'
+
+## SONARR SYMLINK LOGFILE
+  - dest: '/var/log/sonarr/symlink.log'
+    owner: 'sonarr'
+    group: 'adm'
+    mode: '0640'
+    state: 'touch'
+
+## SONARR HOME DIRS
+  - path: '/var/lib/sonarr'
+    owner: 'sonarr'
+    group: 'sonarr'
+    mode: '0750'
+    state: 'directory'
+
+  - path: '/var/lib/sonarr/scripts'
+    owner: 'sonarr'
+    group: 'sonarr'
+    mode: '0750'
+    state: 'directory'
+
+  - path: '/var/lib/sonarr/import'
+    owner: 'sonarr'
+    group: 'sonarr'
+    mode: '0750'
+    state: 'directory'
+
+## BIND MOUNTED (NO OWNER/GROUP)
+  - path: '/var/lib/sonarr/import/rt_work'
+    mode: '0750'
+    state: 'directory'
+
+## BIND MOUNTED (NO OWNER/GROUP)
+  - path: '/var/lib/sonarr/import/nzbget'
+    mode: '0750'
+    state: 'directory'
+
+  - path: '/var/lib/sonarr/config'
+    owner: 'sonarr'
+    group: 'sonarr'
+    mode: '0750'
+    state: 'directory'
+
+resources__host_files:
+
+## SONARR SYSTEMD SERVICE FILE
+  - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system/sonarr.service" }}'
+    dest: '/etc/systemd/system/sonarr.service'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+## SONARR SYMLINK SCRIPT
+  - src: '{{ resources__src + ansible_hostname + "/sonarr_scripts/sonarr_symlink.sh" }}'
+    dest: '/var/lib/sonarr/scripts/sonarr_symlink.sh'
+    owner: 'sonarr'
+    group: 'sonarr'
+    mode: '0700'
+    state: 'present'
+
+## SONARR SYMLINK SCRIPT (ARCHIVE) (ABSENT)
+  - src: '{{ resources__src + ansible_hostname + "/sonarr_scripts/sonarr_symlink_archive1.sh" }}'
+    dest: '/var/lib/sonarr/scripts/sonarr_symlink_archive1.sh'
+    owner: 'sonarr'
+    group: 'sonarr'
+    mode: '0700'
+    state: 'absent'
+
+resources__host_commands:
+
+## RELOAD SYSTEMD DAEMON
+  - name: 'reload the systemd daemon'
+    shell: |
+      sleep 2 && systemctl daemon-reload && sleep 2
+
+## ENABLE SYSTEMD-NETWORKD-WAIT-ONLINE SERVICE
+  - name: 'enable systemd-networkd-wait-online.service if not enabled'
+    shell: |
+      if ! systemctl is-enabled systemd-networkd-wait-online.service ; then
+          systemctl enable systemd-networkd-wait-online.service
+      fi
+

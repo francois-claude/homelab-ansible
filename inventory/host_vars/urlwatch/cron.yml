@@ -1,0 +1,52 @@
+---
+cron__enabled: True
+
+cron__crontab_host_environment:
+  SHELL: '/bin/sh'
+  EDITOR: '/bin/vim.basic'
+  PATH: '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/home/fclaude/.local/bin'
+  MAILTO: '""'
+
+cron__crontab_host_jobs:
+
+## 1 minutes
+  - name: 'urlwatch_1minute_cronjob'
+    user: 'fclaude'
+    special_time: '*/1 * * * *'
+    job: '/home/fclaude/.local/bin/urlwatch'
+    state: 'absent'
+
+## 5 minutes
+  - name: 'urlwatch_5minute_cronjob'
+    user: 'fclaude'
+    special_time: '*/5 * * * *'
+    job: '/home/fclaude/.local/bin/urlwatch'
+    state: 'absent'
+
+## 10 minutes
+  - name: 'urlwatch_10minute_cronjob'
+    user: 'fclaude'
+    special_time: '*/10 * * * *'
+    job: '/home/fclaude/.local/bin/urlwatch'
+    state: 'absent'
+
+## 15 minutes
+  - name: 'urlwatch_15minute_cronjob'
+    user: 'fclaude'
+    special_time: '*/15 * * * *'
+    job: '/home/fclaude/.local/bin/urlwatch'
+    state: 'absent'
+
+## 30 minutes
+  - name: 'urlwatch_30minute_cronjob_new'
+    user: 'fclaude'
+    special_time: '*/30 * * * *'
+    job: 'urlwatch'
+    state: 'present'
+
+## 60 minutes
+  - name: 'urlwatch_60minute_cronjob'
+    user: 'fclaude'
+    special_time: '*/60 * * * *'
+    job: '/home/fclaude/.local/bin/urlwatch'
+    state: 'absent'

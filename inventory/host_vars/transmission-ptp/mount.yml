@@ -1,0 +1,15 @@
+---
+mount__host_binds:
+
+## NFS MOUNT -> TRANSMISSION WATCH DIR
+  - src: '/mnt/nfs/ptp_seed'
+    dest: '/var/lib/transmission-daemon/downloads'
+    fstype: 'none'
+    state: 'present'
+    opts:
+    - 'bind'
+    - 'x-systemd.automount'
+    - 'x-systemd.requires-mounts-for=/mnt/nfs/ptp_seed/'
+
+
+

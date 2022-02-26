@@ -1,0 +1,19 @@
+---
+mount__host_devices:
+
+## TRANSCODE_SSD
+  - src: 'UUID=5bc90a88-70df-4cc4-ac9f-df23c4ff494e'
+    path: '/mnt/transcode_ssd'
+    fstype: 'ext4'
+    opts:
+      - 'rw'
+      - 'defaults'
+      - 'noatime'
+      - 'commit=60'
+    dump: '0'
+    passno: '2'
+    owner: 'plex'
+    group: 'plex'
+    mode: '0700'
+    state: 'present'
+

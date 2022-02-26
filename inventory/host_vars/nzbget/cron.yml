@@ -1,0 +1,93 @@
+---
+cron__crontab_jobs:
+## (ABSENT)
+  - name: 'del_empty_dir_radarr_uhd'
+    user: 'nzbget'
+    special_time: '*/5 * * * *'
+    job: '/usr/bin/find /mnt/vols/nzbget/completed/radarr_uhd/ -mindepth 1 -empty -type d -delete > /dev/null 2>&1'
+    state: 'absent'
+
+## (ABSENT)
+  - name: 'del_empty_dir_radarr_docs'
+    user: 'nzbget'
+    special_time: '*/5 * * * *'
+    job: '/usr/bin/find /mnt/vols/nzbget/completed/radarr_docs/ -mindepth 1 -empty -type d -delete > /dev/null 2>&1'
+    state: 'absent'
+
+## (ABSENT)
+  - name: 'del_empty_dir_radarr_french'
+    user: 'nzbget'
+    special_time: '*/5 * * * *'
+    job: '/usr/bin/find /mnt/vols/nzbget/completed/radarr_french/ -mindepth 1 -empty -type d -delete > /dev/null 2>&1'
+    state: 'absent'
+
+## (ABSENT)
+  - name: 'del_empty_dir_radarr_uhd_docs'
+    user: 'nzbget'
+    special_time: '*/5 * * * *'
+    job: '/usr/bin/find /mnt/vols/nzbget/completed/radarr_uhd_docs/ -mindepth 1 -empty -type d -delete > /dev/null 2>&1'
+    state: 'absent'
+
+
+## GENERAL
+  - name: 'del_empty_dir_general'
+    user: 'nzbget'
+    special_time: '*/5 * * * *'
+    job: '/usr/bin/find /mnt/vols/nzbget/completed/general/ -mindepth 1 -empty -type d -delete > /dev/null 2>&1'
+    state: 'present'
+
+## MUSIC
+  - name: 'del_empty_dir_music'
+    user: 'nzbget'
+    special_time: '*/5 * * * *'
+    job: '/usr/bin/find /mnt/vols/nzbget/completed/music/ -mindepth 1 -empty -type d -delete > /dev/null 2>&1'
+    state: 'present'
+
+## SOFTWARE
+  - name: 'del_empty_dir_software'
+    user: 'nzbget'
+    special_time: '*/5 * * * *'
+    job: '/usr/bin/find /mnt/vols/nzbget/completed/software/ -mindepth 1 -empty -type d -delete > /dev/null 2>&1'
+    state: 'present'
+
+## MOVIES
+  - name: 'del_empty_dir_movies'
+    user: 'nzbget'
+    special_time: '*/5 * * * *'
+    job: '/usr/bin/find /mnt/vols/nzbget/completed/movies/ -mindepth 1 -empty -type d -delete > /dev/null 2>&1'
+    state: 'present'
+
+## SERIES
+  - name: 'del_empty_dir_series'
+    user: 'nzbget'
+    special_time: '*/5 * * * *'
+    job: '/usr/bin/find /mnt/vols/nzbget/completed/series/ -mindepth 1 -empty -type d -delete > /dev/null 2>&1'
+    state: 'present'
+
+## PR0N
+  - name: 'del_empty_dir_pr0n'
+    user: 'nzbget'
+    special_time: '*/5 * * * *'
+    job: '/usr/bin/find /mnt/vols/nzbget/completed/pr0n/ -mindepth 1 -empty -type d -delete > /dev/null 2>&1'
+    state: 'present'
+
+## RADARR
+  - name: 'del_empty_dir_radarr'
+    user: 'nzbget'
+    special_time: '*/5 * * * *'
+    job: '/usr/bin/find /mnt/vols/nzbget/completed/radarr/ -mindepth 1 -empty -type d -delete > /dev/null 2>&1'
+    state: 'present'
+
+## RADARR-UHD
+  - name: 'del_empty_dir_radarr-uhd'
+    user: 'nzbget'
+    special_time: '*/5 * * * *'
+    job: '/usr/bin/find /mnt/vols/nzbget/completed/radarr-uhd/ -mindepth 1 -empty -type d -delete > /dev/null 2>&1'
+    state: 'present'
+
+## SONARR
+  - name: 'del_empty_dir_sonarr'
+    user: 'nzbget'
+    special_time: '*/5 * * * *'
+    job: '/usr/bin/find /mnt/vols/nzbget/completed/sonarr/ -mindepth 1 -empty -type d -delete > /dev/null 2>&1'
+    state: 'present'

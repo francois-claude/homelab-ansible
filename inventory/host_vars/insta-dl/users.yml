@@ -1,0 +1,25 @@
+---
+users__host_accounts:
+
+  - name: 'insta-dl'
+    groups: [ 'labmedia' ]
+    append: True
+    user: True
+    admin: False
+    uid: '2000'
+    gid: '2000'
+    comment: 'insta-dl user account'
+    password_lock: True
+    linger: False
+    state: 'present'
+    home: '/home/insta-dl'
+    home_owner: 'insta-dl'
+    home_group: 'insta-dl'
+    home_mode: '0700'
+    create_home: True
+    move_home: True
+    generate_ssh_key: False
+    sshkeys: "{{ ssh_auth_keys_debops.fclaude_user }}"
+    sshkeys_exclusive: True
+    sshkeys_state: 'present'
+    shell: '/bin/bash'

@@ -1,0 +1,46 @@
+---
+apt_install__editor_packages:
+
+  - 'nano'
+  - 'vim'
+
+apt_install__default_alternatives:
+
+  - name: 'editor'
+    path: '/usr/bin/vim.basic'
+
+apt_install__group_packages:
+
+  - 'net-tools'
+  - 'netcat'
+  - 'sudo'
+  - 'wget'
+  - 'htop'
+  - 'rsync'
+  - 'strace'
+  - 'tcpdump'
+  - 'ncat'
+  - 'libuser'
+  - 'curl'
+  - 'kitty-terminfo'
+
+  
+#  - 'iptraf-ng'
+#  - 'nethogs'
+#  - 'atop'
+#  - 'apachetop'
+#  - 'ftptop'
+#  - 'mytop'
+#  - 'powertop'
+#  - 'ntopng'
+#  - 'jnettop'
+#  - 'ethtool'
+#  - 'bmon'
+#  - 'traceroute'
+#  - 'ss'
+#  - 'mtr'
+#  - 'dstat'
+#  - 'mpstat'
+#  - 'sysstat'
+#  - 'whowatch'
+#  - 'dtrace'

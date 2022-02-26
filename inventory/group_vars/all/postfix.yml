@@ -1,0 +1,50 @@
+---
+postfix__packages: [ 'libsasl2-modules' ]
+
+postfix__accept_any: False
+
+postfix__lookup_tables:
+
+  - name: 'smtp_sasl_password_maps.in'
+    mode: '0600'
+    options:
+
+      - name: '[smtp.gmail.com]:587'
+        value: '{{ lookup("file", secret + "/postfix/smtp-auth.key") }}'
+
+postfix__group_maincf:
+
+  - name: 'smtp_sasl_auth_enable'
+    value: 'yes'
+    state: 'present'
+    comment: 'Gmail configuration #1'
+
+  - name: 'smtp_tls_security_level'
+    value: 'encrypt'
+    state: 'present'
+    comment: 'Gmail configuration #2'
+
+  - name: 'smtp_sasl_tls_security_options'
+    value: 'noanonymous'
+    state: 'present'
+    comment: 'Gmail configuration #3'
+
+  - name: 'relayhost'
+    value: '[smtp.gmail.com]:587'
+    state: 'present'
+    comment: 'Gmail configuration #4'
+
+  - name: 'smtp_use_tls'
+    value: 'yes'
+    state: 'present'
+    comment: 'Gmail configuration #5'
+
+  - name: 'smtp_sasl_auth_enable'
+    value: 'yes'
+    state: 'present'
+    comment: 'Gmail configuration #6'
+
+  - name: 'smtp_sasl_password_maps'
+    value: [ 'hash:${config_directory}/smtp_sasl_password_maps' ]
+    state: 'present'
+    comment: 'Gmail configuration #7'

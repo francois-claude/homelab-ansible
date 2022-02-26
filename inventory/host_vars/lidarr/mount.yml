@@ -1,0 +1,24 @@
+---
+mount__host_binds:
+
+## NZB IMPORT MOUNT
+  - src: '/mnt/nfs/nzbget'
+    dest: '/var/lib/lidarr/import/nzbget'
+    state: 'present'
+    fstype: 'none'
+    opts:
+      - 'bind'
+      - '_netdev'
+      - 'x-systemd.automount'
+      - 'x-systemd.requires-mounts-for=/mnt/nfs/nzbget/'
+
+## RTPS IMPORT MOUNT
+  - src: '/mnt/nfs/rt_work'
+    dest: '/var/lib/lidarr/import/rt_work'
+    state: 'present'
+    fstype: 'none'
+    opts:
+      - 'bind'
+      - '_netdev'
+      - 'x-systemd.automount'
+      - 'x-systemd.requires-mounts-for=/mnt/nfs/rt_work/'

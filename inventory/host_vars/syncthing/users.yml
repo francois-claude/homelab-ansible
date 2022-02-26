@@ -1,0 +1,22 @@
+---
+users__host_accounts:
+
+  - name: 'sthing'
+    user: True
+    system: False
+    admin: False
+    uid: '2010'
+    gid: '2010'
+    comment: 'Syncthing Daemon'
+    password_lock: True
+    linger: False
+    home: '/var/lib/syncthing'
+    home_owner: 'sthing'
+    home_group: 'sthing'
+    home_mode: '0700'
+    create_home: False
+    generate_ssh_key: False
+    sshkeys_state: 'absent'
+    shell: '/usr/sbin/nologin'
+    state: 'present'
+    dotfiles_enabled: False

@@ -1,0 +1,10 @@
+---
+cron__crontab_host_jobs:
+
+## RUN INSTALOADER SCRIPT EVERY 6 HOURS
+  - name: 'instaloader_script_6hour'
+    user: 'insta-dl'
+    special_time: '0 */6 * * *'
+    job: '/home/insta-dl/instaloader.sh'
+    state: 'absent'
+    disabled: False

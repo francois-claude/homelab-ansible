@@ -1,0 +1,61 @@
+---
+mount__host_devices:
+
+## RT_WORK
+  - src: 'UUID=f24b5505-7083-4e35-86a9-9637914f95ed'
+    path: '/mnt/vols/rt_work'
+    fstype: 'ext4'
+    opts:
+      - 'defaults'
+    dump: '0'
+    passno: '2'
+    owner: 'rtorrent'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+  ## RT_SHARE
+  - src: 'UUID=8b9cf2d3-b3c9-4ebc-864b-c61d0df7f1bc'
+    path: '/mnt/vols/rt_share'
+    fstype: 'ext4'
+    opts:
+      - 'defaults'
+    dump: '0'
+    passno: '2'
+    owner: 'rtorrent'
+    group: 'labmedia'
+    mode: '0750'
+    state: 'present'
+
+
+mount__host_binds:
+
+## RTPS SHARE -> RTPS NFS DIR
+  - src: '/mnt/vols/rt_work'
+    dest: '/srv/nfs/rt_work'
+    fstype: 'none'
+    state: 'present'
+    opts:
+    - 'bind'
+    - 'x-systemd.automount'
+    - 'x-systemd.requires-mounts-for=/mnt/vols/rt_work/'
+
+## RTPS SHARE -> RTPS WORK DIR
+  - src: '/mnt/vols/rt_work'
+    dest: '/home/rtorrent/rtorrent/work'
+    fstype: 'none'
+    state: 'present'
+    opts:
+    - 'bind'
+    - 'x-systemd.automount'
+    - 'x-systemd.requires-mounts-for=/mnt/vols/rt_work/'
+
+## RTPS WATCH (NFS) -> RTPS WORK DIR (ABSENT)
+  - src: '/mnt/vols/rt_share'
+    dest: '/home/rtorrent/rtorrent/rt_share'
+    fstype: 'none'
+    state: 'present'
+    opts:
+    - 'bind'
+    - 'x-systemd.automount'
+    - 'x-systemd.requires-mounts-for=/mnt/vols/rt_share/'

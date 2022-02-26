@@ -1,0 +1,42 @@
+---
+ferm__host_rules:
+
+  - name: 'DEBOPS_accept_nginx_8080_bitwarden_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.130.10'
+    daddr: '10.10.120.16'
+    dport: '8080'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from nginx to port 8080/tcp'
+
+  - name: 'DEBOPS_accept_nginx_3012_bitwarden_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.130.10'
+    daddr: '10.10.120.16'
+    dport: '3012'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from nginx to port 3012/tcp'
+
+  - name: 'DEBOPS_accept_mbp_25_protonmail_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.100.20'
+    daddr: '10.10.120.16'
+    dport: '25'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from mbp to port 25/tcp'
+
+  - name: 'DEBOPS_accept_mbp_143_protonmail_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.100.20'
+    daddr: '10.10.120.16'
+    dport: '143'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from mbp to port 143/tcp'

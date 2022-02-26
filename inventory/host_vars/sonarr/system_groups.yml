@@ -1,0 +1,17 @@
+---
+system_groups__host_list:
+
+# SONARR
+  - name: 'sonarr'
+    members: 
+
+      - 'fclaude'
+      - 'sonarr'
+
+# LABMEDIA
+  - name: 'labmedia'
+    members: 
+
+      - 'fclaude'
+      - 'sonarr'
+

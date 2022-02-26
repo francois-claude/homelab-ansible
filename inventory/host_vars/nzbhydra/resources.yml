@@ -1,0 +1,96 @@
+---
+resources__host_paths:
+
+## OPT DIR
+  - path: '/opt'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+## NZBHYDRA CONF DIR
+  - path: '/opt/nzbhydra2'
+    owner: 'nzbhydra'
+    group: 'nzbhydra'
+    mode: '0700'
+    state: 'directory'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+## NZBHYDRA CONF DIR
+  - path: '/etc/nzbhydra'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
+  - path: '/etc/nzbhydra/logs'
+    owner: 'nzbhydra'
+    group: 'nzbhydra'
+    mode: '0700'
+    state: 'directory'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+  - path: '/etc/nzbhydra/database'
+    owner: 'nzbhydra'
+    group: 'nzbhydra'
+    mode: '0700'
+    state: 'directory'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+  - path: '/etc/nzbhydra/backup'
+    owner: 'nzbhydra'
+    group: 'nzbhydra'
+    mode: '0700'
+    state: 'directory'
+    acl:
+      - etype: 'user'
+        entity: 'fclaude'
+        permissions: 'rwX'
+        state: 'present'
+
+resources__host_files:
+
+## NZBHYDRA SYSTEMD SCRIPT
+  - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system/nzbhydra.service" }}'
+    dest: '/etc/systemd/system/nzbhydra.service'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    state: 'present'
+
+## NZBHYDRA PYTHON2 LAUNCH HELPER
+  - src: '{{ resources__src + ansible_hostname + "/etc/nzbhydra/nzbhydra2wrapper.py" }}'
+    dest: '/etc/nzbhydra/nzbhydra2wrapper.py'
+    owner: 'nzbhydra'
+    group: 'nzbhydra'
+    mode: '0644'
+    state: 'present'
+
+## NZBHYDRA PYTHON3 LAUNCH HELPER
+  - src: '{{ resources__src + ansible_hostname + "/etc/nzbhydra/nzbhydra2wrapperPy3.py" }}'
+    dest: '/etc/nzbhydra/nzbhydra2wrapperPy3.py'
+    owner: 'nzbhydra'
+    group: 'nzbhydra'
+    mode: '0644'
+    state: 'present'
+
+# resources__host_archives:
+
+## NZBHYDRA BINARIES [ FIRST RUN ONLY ]
+  - src: '{{ resources__src + ansible_hostname + "/nzbhydra2-3.5.1-linux.zip" }}'
+    dest: '/opt/nzbhydra2'
+    creates: '/opt/nzbhydra2'
+    owner: 'nzbhydra'
+    group: 'nzbhydra'

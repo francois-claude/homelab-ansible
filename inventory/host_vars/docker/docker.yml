@@ -1,0 +1,7 @@
+---
+docker_upstream: False
+
+docker_admins: [ 'fclaude' ]
+
+docker_server__admins: [ 'fclaude' ]
+

@@ -1,0 +1,17 @@
+---
+system_groups__host_list:
+
+# LIDARR
+  - name: 'lidarr'
+    members: 
+
+      - 'fclaude'
+      - 'lidarr'
+
+# LABMEDIA
+  - name: 'labmedia'
+    members: 
+
+      - 'fclaude'
+      - 'lidarr'
+

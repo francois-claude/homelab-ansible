@@ -1,0 +1,4 @@
+---
+system_groups__sudo_enabled: True
+
+system_groups__admins_sudo_nopasswd: True

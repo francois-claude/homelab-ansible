@@ -1,0 +1,35 @@
+---
+ferm__host_rules:
+
+# RADARR WEBUI PORT ARCHBTW
+  - name: 'DEBOPS_accept_archbtw_7878_radarr_webui_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.100.10'
+    daddr: '10.10.120.26'
+    dport: '7878'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from archbtw to port 7878/tcp'
+
+# RADARR WEBUI PORT MBP
+  - name: 'DEBOPS_accept_mbp_7878_radarr_webui_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.100.20'
+    daddr: '10.10.120.26'
+    dport: '7878'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from mbp to port 7878/tcp'
+
+# RADARR WEBUI PORT MARION_RR
+  - name: 'DEBOPS_accept_marionRR_7878_radarr_webui_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.117.45.2'
+    daddr: '10.10.120.26'
+    dport: '7878'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from marionRR to port 7878/tcp'

@@ -1,0 +1,20 @@
+---
+users__host_accounts:
+
+  - name: 'lidarr'
+    user: True
+    system: True
+    admin: False
+    uid: '161'
+    gid: '161'
+    groups: [ 'labmedia' ]
+    comment: 'Lidarr Daemon'
+    password_lock: True
+    linger: False
+    home: '/nonexistent'
+    create_home: False
+    generate_ssh_key: False
+    sshkeys_state: 'absent'
+    shell: '/usr/sbin/nologin'
+    state: 'present'
+    dotfiles_enabled: False

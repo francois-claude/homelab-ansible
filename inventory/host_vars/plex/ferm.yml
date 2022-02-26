@@ -1,0 +1,15 @@
+---
+ferm__iptables_backend_enabled: True
+
+ferm__iptables_backend_path: '/usr/sbin/iptables-legacy'
+
+ferm__host_rules:
+
+  - name: 'DEBOPS_accept_any_32400_plex_tcp'
+    type: 'accept'
+    accept_any: True
+    dport: '32400'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from any to port 32400/tcp'
+

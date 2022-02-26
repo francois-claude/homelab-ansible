@@ -1,0 +1,23 @@
+---
+ferm__host_rules:
+
+# ALLOW NODE
+  - name: 'DEBOPS_accept_port_3000_any_node'
+    type: 'accept'
+    accept_any: True
+    daddr: '10.10.130.10'
+    dport: '3000'
+    protocol: 'tcp'
+    rule_state: 'absent'
+    comment: 'accept incoming connections from nginx to port 3000/tcp'
+
+# ALLOW ARCHBTW
+  - name: 'DEBOPS_accept_port_3000_any_node_archbtw'
+    type: 'accept'
+    accept_any: True
+    daddr: '10.10.100.10'
+    dport: '3000'
+    protocol: 'tcp'
+    rule_state: 'absent'
+    comment: 'accept incoming connections from archbtw to port 3000/tcp'
+

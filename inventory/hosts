@@ -1,0 +1,90 @@
+[debops_all_hosts]
+debops                  ansible_host=debops.marion.lan                 ansible_connection=local        ansible_user=root
+urlwatch                ansible_host=urlwatch.marion.lan               ansible_connection=ssh          ansible_user=root
+pihole                  ansible_host=pihole.marion.lan                 ansible_connection=ssh          ansible_user=root
+rclone                  ansible_host=rclone.marion.lan                 ansible_connection=ssh          ansible_user=root
+icloudpd                ansible_host=icloudpd.marion.lan               ansible_connection=ssh          ansible_user=root
+
+#sandbox                 ansible_host=sandbox.marion.lan                ansible_connection=ssh          ansible_user=debops     system_users__self_name=debops
+#docker                  ansible_host=docker.marion.lan                 ansible_connection=ssh          ansible_user=debops     system_users__self_name=debops
+#plex                    ansible_host=plex.marion.lan                   ansible_connection=ssh          ansible_user=debops     system_users__self_name=debops
+#nginx                   ansible_host=nginx.marion.lan                  ansible_connection=ssh          ansible_user=debops     system_users__self_name=debops
+#jackett                 ansible_host=jackett.marion.lan                ansible_connection=ssh          ansible_user=debops     system_users__self_name=debops
+#syncthing               ansible_host=syncthing.marion.lan              ansible_connection=ssh          ansible_user=debops     system_users__self_name=debops
+#nextcloud               ansible_host=nextcloud.marion.lan              ansible_connection=ssh          ansible_user=debops     system_users__self_name=debops
+#sonarr                  ansible_host=sonarr.marion.lan                 ansible_connection=ssh          ansible_user=debops     system_users__self_name=debops
+#nzbget                  ansible_host=nzbget.marion.lan                 ansible_connection=ssh          ansible_user=debops     system_users__self_name=debops
+#radarr                  ansible_host=radarr.marion.lan                 ansible_connection=ssh          ansible_user=debops     system_users__self_name=debops
+#rtorrent                ansible_host=rtorrent.marion.lan               ansible_connection=ssh          ansible_user=debops     system_users__self_name=debops
+#lidarr                  ansible_host=lidarr.marion.lan                 ansible_connection=ssh          ansible_user=debops     system_users__self_name=debops
+#insta-dl                ansible_host=insta-dl.marion.lan               ansible_connection=ssh          ansible_user=debops     system_users__self_name=debops
+#transmission-ptp        ansible_host=transmission-ptp.marion.lan       ansible_connection=ssh          ansible_user=debops     system_users__self_name=debops
+#synapse                 ansible_host=synapse.marion.lan                ansible_connection=ssh          ansible_user=debops     system_users__self_name=debops
+#matrix                  ansible_host=matrix.marion.lan                 ansible_connection=ssh          ansible_user=debops       system_users__self_name=debops
+#pihole-dmz              ansible_host=pihole-dmz.marion.lan             ansible_connection=ssh          ansible_user=debops       system_users__self_name=debops
+
+[qemu_kvm_hosts]
+debops
+urlwatch
+pihole
+rclone
+icloudpd
+
+[lxc_hosts]
+
+[nfs_clients]
+rclone
+icloudpd
+
+[nfs_servers]
+#nzbget
+#rtorrent
+
+## basic security
+[debops_service_fail2ban:children]
+debops_all_hosts
+
+[debops_service_etc_aliases:children]
+debops_all_hosts
+
+[debops_service_postfix:children]
+debops_all_hosts
+
+[debops_service_sysnews:children]
+debops_all_hosts
+
+## nfs clients / servers
+[debops_service_nfs:children]
+nfs_clients
+
+[debops_service_nfs_server:children]
+nfs_servers
+
+
+## grub
+[debops_service_grub:children]
+qemu_kvm_hosts
+
+
+## debops
+
+[debops_service_ansible]
+#debops
+
+[debops_service_docker_server]
+#docker
+
+## nextcloud
+[debops_service_mariadb_server]
+#nextcloud
+
+[debops_service_redis_server]
+#nextcloud
+
+[debops_service_owncloud]
+#nextcloud
+
+## nginx
+[debops_service_nginx]
+#rtorrent
+

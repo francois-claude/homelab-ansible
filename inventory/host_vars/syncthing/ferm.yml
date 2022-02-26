@@ -1,0 +1,58 @@
+---
+ferm__host_rules:
+
+# NGINX
+  - name: 'DEBOPS_accept_nginx_8384_syncthing_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.130.10'
+    daddr: '10.10.120.11'
+    dport: '8384'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from nginx to port 8384/tcp'
+
+# THREADRIPPER WEBGUI
+  - name: 'DEBOPS_accept_threadripper_8384_syncthing_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.100.10'
+    daddr: '10.10.120.11'
+    dport: '8384'
+    protocol: 'tcp'
+    rule_state: 'absent'
+    comment: 'accept incoming connections from threadripper to port 8384/tcp'
+
+# MBP WEBGUI
+  - name: 'DEBOPS_accept_mbp_8384_syncthing_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.100.20'
+    daddr: '10.10.120.11'
+    dport: '8384'
+    protocol: 'tcp'
+    rule_state: 'absent'
+    comment: 'accept incoming connections from mbp to port 8384/tcp'
+
+# THREADRIPPER SYNC PORT
+  - name: 'DEBOPS_accept_threadripper_22000_syncthing_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.100.10'
+    daddr: '10.10.120.11'
+    dport: '22000'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from threadripper to port 22000/tcp'
+
+# MBP SYNC PORT
+  - name: 'DEBOPS_accept_mbp_22000_syncthing_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.100.20'
+    daddr: '10.10.120.11'
+    dport: '22000'
+    protocol: 'tcp'
+    rule_state: 'present'
+    comment: 'accept incoming connections from mbp to port 22000/tcp'
+
