@@ -1,7 +1,7 @@
 ---
 apt__host_repositories:
 
-## OFFICIAL SYNCTHING REPO
+  # official syncthing repo
   - repo: 'deb https://apt.syncthing.net/ syncthing stable'
     architecture: 'amd64'
     filename: 'syncthing-official-stable'
@@ -9,7 +9,7 @@ apt__host_repositories:
 
 apt__host_keys:
 
-## OFFICIAL SYNCTHING REPO KEY
+  # official syncthing repo key
   - url: 'https://syncthing.net/release-key.txt'
     state: 'present'
 

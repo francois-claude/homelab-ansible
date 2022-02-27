@@ -1,7 +1,7 @@
 ---
 apt_install__host_packages:
 
-# urlwatch dependencies
+  # urlwatch dependencies
   - 'build-essential'
   - 'pkg-config'
   - 'python3-dev'

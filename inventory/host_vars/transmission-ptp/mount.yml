@@ -1,7 +1,7 @@
 ---
 mount__host_binds:
 
-## NFS MOUNT -> TRANSMISSION WATCH DIR
+  # nfs mount -> transmission watch dir
   - src: '/mnt/nfs/ptp_seed'
     dest: '/var/lib/transmission-daemon/downloads'
     fstype: 'none'

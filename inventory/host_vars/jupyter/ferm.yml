@@ -1,11 +1,9 @@
 ---
 ferm__enabled: True
-ferm__iptables_backend_enabled: True
-ferm__iptables_backend_path: '/usr/sbin/iptables-legacy'
 
 ferm__host_rules:
 
-# JUPYTER PORT ARCHBTW (TCP)
+  # jupyter port archbtw (tcp)
   - name: 'DEBOPS_accept_8888_jupyter_tcp_archbtw'
     type: 'accept'
     accept_any: False
@@ -16,7 +14,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from archbtw to port 8888/tcp'
 
-# JUPYTER PORT MBP (TCP)
+  # jupyter port mbp (tcp)
   - name: 'DEBOPS_accept_8888_jupyter_tcp_mbp'
     type: 'accept'
     accept_any: False

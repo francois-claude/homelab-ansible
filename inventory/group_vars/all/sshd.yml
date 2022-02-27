@@ -1,10 +1,7 @@
 ---
 sshd__whitelist: []
 
-# sshd__known_hosts: [ 'github.com' ]
-
-# sshd__permit_root_login: 'no'
-# sshd__password_authentication: 'no'
+sshd__password_authentication: 'no'
 
 ssh_auth_keys_debops:
 

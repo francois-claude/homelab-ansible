@@ -1,14 +1,14 @@
 ---
 nfs_server__allow:
 
-  - '10.10.120.25' # SONARR
-  - '10.10.120.26' # RADARR
-  - '10.10.120.27' # RADARR-UHD
-  - '10.10.120.28' # LIDARR
+  - '10.10.120.25' # sonarr
+  - '10.10.120.26' # radarr
+  - '10.10.120.27' # radarr-uhd
+  - '10.10.120.28' # lidarr
 
 nfs_server__host_exports:
 
-## SONARR EXPORT
+  # sonarr export
   - path: '/srv/nfs/sonarr'
     comment: 'nzbget to sonarr export'
     owner: 'nzbget'
@@ -17,22 +17,22 @@ nfs_server__host_exports:
     state: 'present'
     acl:
 
-        # SONARR
+        # sonarr
       - clients: '10.10.120.25'
-        options: 
+        options:
           - 'rw'
           - 'sync'
           - 'all_squash'
           - 'no_subtree_check'
-          - 'anonuid=158' # NZBGET UID
-          - 'anongid=158' # NZBGET UID
+          - 'anonuid=158' # nzbget uid
+          - 'anongid=158' # nzbget uid
 
     bind:
       src: '/mnt/vols/nzbget/completed/sonarr'
       options: [ 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/sonarr' ]
 
-  
-## RADARR EXPORT
+
+  # radarr export
   - path: '/srv/nfs/radarr'
     comment: 'nzbget to radarr export'
     owner: 'nzbget'
@@ -41,21 +41,21 @@ nfs_server__host_exports:
     state: 'present'
     acl:
 
-        # RADARR
+        # radarr
       - clients: '10.10.120.26'
-        options: 
+        options:
           - 'rw'
           - 'sync'
           - 'all_squash'
           - 'no_subtree_check'
-          - 'anonuid=158' # NZBGET UID
-          - 'anongid=158' # NZBGET UID
-    
+          - 'anonuid=158' # nzbget uid
+          - 'anongid=158' # nzbget uid
+
     bind:
       src: '/mnt/vols/nzbget/completed/radarr'
       options: [ 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/radarr' ]
 
-## RADARR-UHD EXPORT
+  # radarr-uhd export
   - path: '/srv/nfs/radarr-uhd'
     comment: 'nzbget to radarr-uhd export'
     owner: 'nzbget'
@@ -64,21 +64,21 @@ nfs_server__host_exports:
     state: 'present'
     acl:
 
-        # RADARR-UHD
+        # radarr-uhd
       - clients: '10.10.120.27'
-        options: 
+        options:
           - 'rw'
           - 'sync'
           - 'all_squash'
           - 'no_subtree_check'
-          - 'anonuid=158' # NZBGET UID
-          - 'anongid=158' # NZBGET UID
-    
+          - 'anonuid=158' # nzbget uid
+          - 'anongid=158' # nzbget uid
+
     bind:
       src: '/mnt/vols/nzbget/completed/radarr-uhd'
       options: [ 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/radarr-uhd' ]
 
-## LIDARR EXPORT
+  # lidarr export
   - path: '/srv/nfs/lidarr'
     comment: 'nzbget to lidarr export'
     owner: 'nzbget'
@@ -87,16 +87,16 @@ nfs_server__host_exports:
     state: 'present'
     acl:
 
-        # RADARR-UHD
+        # radarr-uhd
       - clients: '10.10.120.28'
-        options: 
+        options:
           - 'rw'
           - 'sync'
           - 'all_squash'
           - 'no_subtree_check'
-          - 'anonuid=158' # NZBGET UID
-          - 'anongid=158' # NZBGET UID
-    
+          - 'anonuid=158' # nzbget uid
+          - 'anongid=158' # nzbget uid
+
     bind:
       src: '/mnt/vols/nzbget/completed/lidarr'
       options: [ 'x-systemd.requires-mounts-for=/mnt/vols/nzbget/completed/lidarr' ]

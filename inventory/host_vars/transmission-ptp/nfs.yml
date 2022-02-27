@@ -1,7 +1,7 @@
 ---
 nfs__host_shares:
 
-## TRUENAS PTP_SHARE (READ/WRITE)
+  # truenas ptp_share (read/write)
   - path: '/mnt/nfs/ptp_seed'
     src: '10.10.70.20:/mnt/tank03/ds01/media/.downloads/ptp_seed'
     fstype: 'nfs4'

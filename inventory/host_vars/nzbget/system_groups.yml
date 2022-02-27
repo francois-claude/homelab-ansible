@@ -1,16 +1,16 @@
 ---
 system_groups__host_list:
 
-# NZBGET
+  # nzbget
   - name: 'nzbget'
-    members: 
+    members:
 
       - 'fclaude'
       - 'nzbget'
 
-# LABMEDIA
+  # labmedia
   - name: 'labmedia'
-    members: 
+    members:
 
       - 'fclaude'
       - 'nzbget'

@@ -1,7 +1,7 @@
 ---
 resources__host_paths:
 
-## CREATE COMPOSE DIR
+  # create compose dir
   - path: '/home/fclaude/compose'
     owner: 'fclaude'
     group: 'fclaude'
@@ -10,7 +10,7 @@ resources__host_paths:
 
 resources__host_files:
 
-## DOCKER-COMPOSE FILE
+  # docker-compose file
   - src: '{{ resources__src + ansible_hostname + "/home/fclaude/compose/docker-compose.yml" }}'
     dest: '/home/fclaude/compose/docker-compose.yml'
     owner: 'fclaude'

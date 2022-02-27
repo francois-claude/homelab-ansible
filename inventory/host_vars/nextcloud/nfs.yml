@@ -1,7 +1,7 @@
 ---
 nfs__host_shares:
 
-## TRUENAS NEXTCLOUD
+  ## truenas nextcloud
   - path: '/mnt/nfs/nextcloud'
     src: '10.10.70.20:/mnt/tank03/ds03/nextcloud'
     fstype: 'nfs4'

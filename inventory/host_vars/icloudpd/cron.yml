@@ -1,18 +1,20 @@
 ---
+cron__enabled: True
+
 cron__crontab_host_jobs:
 
-## run icloud backup script every 6 hours
+  # run icloud backup script every 6 hours
   - name: 'icloudpd_script_6hour'
     user: 'icloudpd'
     special_time: '0 */6 * * *'
     job: '/home/fclaude/icloudpd_fclaude_backup.sh'
     state: 'absent'
-    disabled: true
+    disabled: True
 
-## run icloud backup script every 12 hours
+  # run icloud backup script every 12 hours
   - name: 'icloudpd_script_12hour'
     user: 'icloudpd'
-    special_time: '0 */6 * * *'
+    special_time: '0 */12 * * *'
     job: '/home/fclaude/icloudpd_fclaude_backup.sh'
-    state: 'absent'
-    disabled: true
+    state: 'present'
+    disabled: False

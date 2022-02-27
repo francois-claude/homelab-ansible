@@ -3,7 +3,7 @@ resources__host_paths: []
 
 resources__host_files:
 
-## JACKETT SYSTEMD SCRIPT
+  # jackett systemd script
   - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system/jackett.service" }}'
     dest: '/etc/systemd/system/jackett.service'
     owner: 'root'
@@ -13,9 +13,9 @@ resources__host_files:
 
 resources__host_archives:
 
-## JACKETT BINARIES
-  - src: '{{ resources__src + ansible_hostname + "/Jackett.Binaries.LinuxAMDx64.tar.gz" }}'
+  # jackett binaries
+  - src: '{{ resources__src + ansible_hostname + "/jackett.binaries.linuxamdx64.tar.gz" }}'
     dest: '/opt/'
-    creates: '/opt/Jackett'
+    creates: '/opt/jackett'
     owner: 'jackett'
     group: 'jackett'

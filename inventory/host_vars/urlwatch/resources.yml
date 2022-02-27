@@ -39,8 +39,7 @@ resources__host_paths:
 
 resources__host_files:
 
-## urlwatch configuration file
-
+  # urlwatch configuration file
   - src: '{{ resources__src + ansible_hostname + "/home/fclaude/dot_config/urlwatch/urlwatch.yaml" }}'
     dest: '/home/fclaude/.config/urlwatch/urlwatch.yaml'
     owner: 'fclaude'
@@ -48,8 +47,7 @@ resources__host_files:
     mode: '0600'
     state: 'present'
 
-## urlwatch configuration file (original)
-
+  # urlwatch configuration file (original)
   - src: '{{ resources__src + ansible_hostname + "/home/fclaude/dot_config/urlwatch/urlwatch.yaml.original" }}'
     dest: '/home/fclaude/.config/urlwatch/urlwatch.yaml.original'
     owner: 'fclaude'
@@ -57,8 +55,7 @@ resources__host_files:
     mode: '0400'
     state: 'present'
 
-## urlwatch url watchlist
-
+  # urlwatch url watchlist
   - src: '{{ resources__src + ansible_hostname + "/home/fclaude/dot_config/urlwatch/urls.yaml" }}'
     dest: '/home/fclaude/.config/urlwatch/urls.yaml'
     owner: 'fclaude'
@@ -66,8 +63,7 @@ resources__host_files:
     mode: '0600'
     state: 'present'
 
-## urlwatch url watchlist (original)
-
+  # urlwatch url watchlist (original)
   - src: '{{ resources__src + ansible_hostname + "/home/fclaude/dot_config/urlwatch/urls.yaml.original" }}'
     dest: '/home/fclaude/.config/urlwatch/urls.yaml.original'
     owner: 'fclaude'
@@ -75,8 +71,7 @@ resources__host_files:
     mode: '0400'
     state: 'present'
 
-## urlwatch hooks default examples (original)
-
+  # urlwatch hooks default examples (original)
   - src: '{{ resources__src + ansible_hostname + "/home/fclaude/dot_local/share/urlwatch/examples/hooks.py.example.original" }}'
     dest: '/home/fclaude/.local/share/urlwatch/examples/hooks.py.example.original'
     owner: 'fclaude'
@@ -84,8 +79,7 @@ resources__host_files:
     mode: '0400'
     state: 'present'
 
-## urlwatch urls default examples (original)
-
+  # urlwatch urls default examples (original)
   - src: '{{ resources__src + ansible_hostname + "/home/fclaude/dot_local/share/urlwatch/examples/urls.yaml.example.original" }}'
     dest: '/home/fclaude/.local/share/urlwatch/examples/urls.yaml.example.original'
     owner: 'fclaude'

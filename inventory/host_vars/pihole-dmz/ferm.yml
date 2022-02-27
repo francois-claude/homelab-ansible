@@ -25,7 +25,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from mbp to pihole port 80/tcp'
 
-# NGINX
+  # nginx
   - name: 'DEBOPS_accept_nginx_53_pihole_tcp'
     type: 'accept'
     accept_any: False
@@ -46,7 +46,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from nginx to pihole port 53/udp'
 
-# MATRIX
+  # matrix
   - name: 'DEBOPS_accept_matrix_53_pihole_tcp'
     type: 'accept'
     accept_any: False
@@ -67,7 +67,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from matrix to pihole port 53/udp'
 
-# PLEX
+  # plex
   - name: 'DEBOPS_accept_plex_53_pihole_tcp'
     type: 'accept'
     accept_any: False
@@ -88,7 +88,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from plex to pihole port 53/udp'
 
-# PIHOLE GENERAL
+  # pihole general
 
   - name: 'DEBOPS_reject_any_443_tcp'
     type: 'accept'

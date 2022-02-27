@@ -1,7 +1,7 @@
 ---
 ferm__host_rules:
 
-# NGINX
+  # nginx
   - name: 'DEBOPS_accept_nginx_5000_ombi_tcp'
     type: 'accept'
     accept_any: False

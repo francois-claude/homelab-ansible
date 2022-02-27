@@ -1,0 +1,6 @@
+---
+cron__crontab_group_environment:
+  SHELL: '/bin/sh'
+  EDITOR: '/bin/vim.basic'
+  PATH: '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/home/fclaude/.local/bin'
+  MAILTO: '""'

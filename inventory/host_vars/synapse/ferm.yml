@@ -1,7 +1,7 @@
 ---
 ferm__host_rules:
 
-# MATRIX / SYNAPSE INCOMING CONNECTIONS
+  # matrix / synapse incoming connections
   - name: 'DEBOPS_accept_port_8008_matrix_tcp'
     type: 'accept'
     accept_any: False

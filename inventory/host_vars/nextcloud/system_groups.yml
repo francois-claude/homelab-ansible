@@ -1,9 +1,9 @@
 ---
 system_groups__group_list:
 
-# WWW-DATA
+  # www-data
   - name: 'www-data'
-    members: 
+    members:
 
       - 'fclaude'
       - 'debops'

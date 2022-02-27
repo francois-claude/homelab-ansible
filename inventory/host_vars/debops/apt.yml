@@ -1,14 +1,14 @@
 ---
 apt__host_repositories:
 
-# official github cli repo
+  # official github cli repo
   - repo: 'deb [arch=amd64 signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main'
     filename: 'github-cli-stable'
     state: 'present'
 
 apt__host_keys:
 
-# official github cli repo key
+  # official github cli repo key
   - url: 'https://cli.github.com/packages/githubcli-archive-keyring.gpg'
     state: 'absent'
 

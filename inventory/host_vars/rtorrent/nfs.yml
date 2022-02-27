@@ -1,7 +1,7 @@
 ---
 nfs__host_shares:
 
-## TRUENAS BOOKS (READ/WRITE)
+  # truenas books (read/write)
   - path: '/mnt/nfs/books'
     src: '10.10.70.20:/mnt/tank03/ds01/media/books'
     fstype: 'nfs4'
@@ -11,7 +11,7 @@ nfs__host_shares:
     mode: '0750'
     state: 'present'
 
-## TRUENAS MUSIC (READ/WRITE)
+  # truenas music (read/write)
   - path: '/mnt/nfs/music'
     src: '10.10.70.20:/mnt/tank03/ds01/media/music'
     fstype: 'nfs4'
@@ -21,7 +21,7 @@ nfs__host_shares:
     mode: '0750'
     state: 'present'
 
-## TRUENAS MUSIC_SHARE (READ/WRITE)
+  # truenas music_share (read/write)
   - path: '/mnt/nfs/music_seed'
     src: '10.10.70.20:/mnt/tank03/ds01/media/.downloads/music_seed'
     fstype: 'nfs4'
@@ -31,7 +31,7 @@ nfs__host_shares:
     mode: '0750'
     state: 'present'
 
-## TRUENAS PR0N (READ/WRITE)
+  # truenas pr0n (read/write)
   - path: '/mnt/nfs/pr0n'
     src: '10.10.70.20:/mnt/tank03/ds01/media/pr0n'
     fstype: 'nfs4'
@@ -41,7 +41,7 @@ nfs__host_shares:
     mode: '0750'
     state: 'present'
 
-# TRUENAS TV (READ/WRITE)
+  # truenas tv (read/write)
   - path: '/mnt/nfs/tv'
     src: '10.10.70.20:/mnt/tank03/ds01/media/tv'
     fstype: 'nfs4'
@@ -51,7 +51,7 @@ nfs__host_shares:
     mode: '0750'
     state: 'present'
 
-## TRUENAS DISCS (READ/WRITE)
+  # truenas discs (read/write)
   - path: '/mnt/nfs/discs'
     src: '10.10.70.20:/mnt/tank02/ds01/media/discs'
     fstype: 'nfs4'
@@ -61,7 +61,7 @@ nfs__host_shares:
     mode: '0750'
     state: 'present'
 
-# TRUENAS DOCS (READ/WRITE)
+  # truenas docs (read/write)
   - path: '/mnt/nfs/docs'
     src: '10.10.70.20:/mnt/tank02/ds01/media/docs'
     fstype: 'nfs4'
@@ -71,7 +71,7 @@ nfs__host_shares:
     mode: '0750'
     state: 'present'
 
-# TRUENAS FRENCH (READ/WRITE)
+  # truenas french (read/write)
   - path: '/mnt/nfs/french'
     src: '10.10.70.20:/mnt/tank02/ds01/media/french'
     fstype: 'nfs4'
@@ -81,7 +81,7 @@ nfs__host_shares:
     mode: '0750'
     state: 'present'
 
-# TRUENAS MOVIES (READ/WRITE)
+  # truenas movies (read/write)
   - path: '/mnt/nfs/movies'
     src: '10.10.70.20:/mnt/tank02/ds01/media/movies'
     fstype: 'nfs4'
@@ -91,7 +91,7 @@ nfs__host_shares:
     mode: '0750'
     state: 'present'
 
-## TRUENAS SHRED (READ/WRITE)
+  # truenas shred (read/write)
   - path: '/mnt/nfs/shred'
     src: '10.10.70.20:/mnt/tank02/ds01/media/shred'
     fstype: 'nfs4'

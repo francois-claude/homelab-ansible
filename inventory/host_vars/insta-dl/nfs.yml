@@ -1,7 +1,7 @@
 ---
 nfs__host_shares:
 
-## TRUENAS INSTAGRAM BACKUPS
+  # truenas instagram backups
   - path: '/mnt/nfs/insta-dl'
     src: '10.10.70.20:/mnt/tank03/ds03/backups/ig'
     fstype: 'nfs4'

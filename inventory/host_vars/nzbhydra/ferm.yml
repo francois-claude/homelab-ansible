@@ -1,7 +1,7 @@
 ---
 ferm__host_rules:
 
-# NGINX (ABSENT)
+  # nginx (absent)
   - name: 'DEBOPS_accept_nginx_5076_nzbhydra_tcp'
     type: 'accept'
     accept_any: False
@@ -12,8 +12,19 @@ ferm__host_rules:
     rule_state: 'absent'
     comment: 'accept incoming connections from nginx to port 5076/tcp'
 
-# THREADRIPPER (PRESENT)
+  # archbtw (absent)
   - name: 'DEBOPS_accept_threadripper_5076_nzbhydra_tcp'
+    type: 'accept'
+    accept_any: False
+    saddr: '10.10.100.10'
+    daddr: '10.10.120.24'
+    dport: '5076'
+    protocol: 'tcp'
+    rule_state: 'absent'
+    comment: 'accept incoming connections from threadripper to port 5076/tcp'
+
+  # archbtw (present)
+  - name: 'DEBOPS_accept_archbtw_5076_nzbhydra_tcp'
     type: 'accept'
     accept_any: False
     saddr: '10.10.100.10'
@@ -23,7 +34,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from threadripper to port 5076/tcp'
 
-# MBP (PRESENT)
+  # mbp (present)
   - name: 'DEBOPS_accept_mbp_5076_nzbhydra_tcp'
     type: 'accept'
     accept_any: False
@@ -34,7 +45,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from mbp to port 5076/tcp'
 
-# NZBGET (PRESENT)
+  # nzbget (present)
   - name: 'DEBOPS_accept_nzbget_5076_nzbhydra_tcp'
     type: 'accept'
     accept_any: False

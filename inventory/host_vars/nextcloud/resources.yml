@@ -1,7 +1,7 @@
 ---
 resources__host_paths:
 
-## CREATE ROOT MOUNT DIRS
+  # create root mount dirs
   - path: '/mnt'
     owner: 'root'
     group: 'root'
@@ -14,7 +14,7 @@ resources__host_paths:
     mode: '0755'
     state: 'directory'
 
-## NEXTCLOUD HOME
+  # nextcloud home
   - path: '/srv/www/nextcloud'
     owner: 'www-data'
     group: 'www-data'

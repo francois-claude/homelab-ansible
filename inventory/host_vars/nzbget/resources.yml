@@ -16,7 +16,7 @@ resources__host_paths:
   - path: '/mnt/vols/nzbget/completed/radarr_uhd'
     state: 'absent'
 
-## CREATE ROOT MOUNT DIRS
+  # create root mount dirs
   - path: '/mnt'
     owner: 'root'
     group: 'root'
@@ -29,21 +29,21 @@ resources__host_paths:
     mode: '0755'
     state: 'directory'
 
-## NZBGET LOG DIR
+  # nzbget log dir
   - path: '/var/log/nzbget'
     owner: 'nzbget'
     group: 'adm'
     mode: '2750'
     state: 'directory'
 
-## NZBGET HOME DIRS
+  # nzbget home dirs
   - path: '/var/lib/nzbget'
     owner: 'nzbget'
     group: 'nzbget'
     mode: '0750'
     state: 'directory'
 
-## NZBGET DOWNLOAD DIRS
+  # nzbget download dirs
   - path: '/mnt/vols/nzbget/nzb'
     owner: 'nzbget'
     group: 'labmedia'
@@ -113,7 +113,7 @@ resources__host_paths:
 
 resources__host_files:
 
-## NZBGET SYSTEMD SERVICE FILE
+  # nzbget systemd service file
   - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system/nzbget.service" }}'
     dest: '/etc/systemd/system/nzbget.service'
     owner: 'root'
@@ -124,7 +124,7 @@ resources__host_files:
 
 resources__host_urls:
 
-## NZBGET INSTALL SCRIPT (ABSENT)
+  # nzbget install script (absent)
   - src: 'https://nzbget.net/download/nzbget-latest-bin-linux.run'
     dest: '/var/lib/nzbget-latest-bin-linux.run'
     owner: 'fclaude'
@@ -135,19 +135,19 @@ resources__host_urls:
 
 resources__host_commands:
 
-## RELOAD SYSTEMD DAEMON
+  # reload systemd daemon
   - name: 'reload the systemd daemon'
     shell: |
       sleep 2 && systemctl daemon-reload && sleep 2
 
-## ENABLE SYSTEMD-NETWORKD-WAIT-ONLINE SERVICE
+  # enable systemd-networkd-wait-online service
   - name: 'enable systemd-networkd-wait-online.service if not enabled'
     shell: |
       if ! systemctl is-enabled systemd-networkd-wait-online.service ; then
           systemctl enable systemd-networkd-wait-online.service
       fi
 
-## ENABLE FSTRIM SERVICE
+  # enable fstrim service
   - name: 'enable fstrim.service if not enabled'
     shell: |
       if ! systemctl is-enabled fstrim.service ; then

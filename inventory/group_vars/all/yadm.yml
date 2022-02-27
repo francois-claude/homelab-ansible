@@ -1,7 +1,10 @@
 ---
 yadm__enabled: True
+
 yadm__dotfiles_enabled: True
+
 yadm__dotfiles_host: 'github.com'
+
 yadm__dotfiles_owner: 'whoiscoos'
 
 yadm__group_dotfiles:

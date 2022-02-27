@@ -1,7 +1,7 @@
 ---
 resources__host_paths:
 
-## OPT DIR
+  # opt dir
   - path: '/opt'
     owner: 'root'
     group: 'root'
@@ -10,11 +10,11 @@ resources__host_paths:
     acl:
       - etype: 'user'
         entity: 'tautulli'
-        permissions: 'rwX'
+        permissions: 'rwx'
         state: 'present'
 
-## TAUTULLI DIR
-  - path: '/opt/Tautulli'
+  # tautulli dir
+  - path: '/opt/tautulli'
     owner: 'tautulli'
     group: 'tautulli'
     mode: '0700'
@@ -22,12 +22,12 @@ resources__host_paths:
     acl:
       - etype: 'user'
         entity: 'fclaude'
-        permissions: 'rwX'
+        permissions: 'rwx'
         state: 'present'
 
 resources__host_files:
 
-## TAUTULLI SYSTEMD SERVICE FILE
+  # tautulli systemd service file
   - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system/tautulli.service" }}'
     dest: '/etc/systemd/system/tautulli.service'
     owner: 'root'
@@ -38,52 +38,52 @@ resources__host_files:
 
 resources__host_repositories:
 
-## TAUTULLI REPOSITORY
-  - repo: 'https://github.com/Tautulli/Tautulli'
-    dest: '/opt/Tautulli'
+  # tautulli repository
+  - repo: 'https://github.com/tautulli/tautulli'
+    dest: '/opt/tautulli'
     owner: 'tautulli'
-    _update: False
+    _update: false
     acl:
       - etype: 'user'
         entity: 'fclaude'
-        permissions: 'rwX'
+        permissions: 'rwx'
         state: 'present'
 
 # resources__host_commands:
 
-# ## TAUTULLI SYSTEMD ACTIONS
+# # tautulli systemd actions
 
-#   - name: 'Reload systemd daemon'
+#   - name: 'reload systemd daemon'
 #     shell: |
 #       systemctl daemon-reload
 #     # state: 'ignore'
 
-#   - name: 'Sleep for a few seconds'
+#   - name: 'sleep for a few seconds'
 #     shell: |
 #       sleep 2
 #     # state: 'ignore'
 
-#   - name: 'Disable systemd Tautulli service'
+#   - name: 'disable systemd tautulli service'
 #     shell: |
 #       systemctl disable tautulli.service
 #     # state: 'ignore'
 
-#   - name: 'Sleep for a few seconds'
+#   - name: 'sleep for a few seconds'
 #     shell: |
 #       sleep 2
 #     # state: 'ignore'
 
-#   - name: 'Enable systemd Tautulli service'
+#   - name: 'enable systemd tautulli service'
 #     shell: |
 #       systemctl enable tautulli.service
 #     # state: 'ignore'
 
-#   - name: 'Sleep for a few seconds'
+#   - name: 'sleep for a few seconds'
 #     shell: |
 #       sleep 2
 #     # state: 'ignore'
 
-#   - name: 'Start systemd Tautulli service if disabled'
+#   - name: 'start systemd tautulli service if disabled'
 #     shell: |
 #       if ! systemctl is-active tautulli.service ; then
 #           systemctl start tautulli.service

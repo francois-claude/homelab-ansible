@@ -1,16 +1,2 @@
 ---
 pki_enabled: False
-
-# pki_download_extra: False
-
-# pki_internal: False 
-
-# pki_acme: False
-
-# pki_scheduler: False
-
-# pki_authorities: []
-
-# pki_dependent_authorities: []
-
-# pki_default_realms: []

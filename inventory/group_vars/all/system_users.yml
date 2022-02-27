@@ -1,7 +1,5 @@
 ---
 system_users__dotfiles_enabled: True
-#system_users__dotfiles_repo: 'https://github.com/whoiscoos/dotfiles-server.git'
-
 
 system_users__group_groups:
 

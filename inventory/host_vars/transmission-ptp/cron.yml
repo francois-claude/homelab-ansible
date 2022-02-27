@@ -1,7 +1,7 @@
 ---
 cron__crontab_host_jobs:
 
-## PTP SCRIPT
+  # ptp script
   - name: 'ptp_archiver_cronjob'
     user: 'debian-transmission'
     special_time: '* */4 * * * *'

@@ -1,7 +1,7 @@
 ---
 nfs__host_shares:
 
-## TRUENAS SYNCTHING
+  # truenas syncthing
   - path: '/mnt/nfs/syncthing'
     src: '10.10.70.20:/mnt/tank03/ds03/syncthing'
     fstype: 'nfs4'

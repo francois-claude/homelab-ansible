@@ -1,7 +1,7 @@
 ---
 ferm__host_rules:
 
-# TRANSMISSION RPC PORT (TCP)
+  # transmission rpc port (tcp)
   - name: 'DEBOPS_accept_archbtw_9091_transmission_tcp'
     type: 'accept'
     accept_any: False
@@ -12,7 +12,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from archbtw to port 9091/tcp'
 
-# TRANSMISSION RPC PORT (TCP)
+  # transmission rpc port (tcp)
   - name: 'DEBOPS_accept_mbp_9091_transmission_tcp'
     type: 'accept'
     accept_any: False
@@ -23,7 +23,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from mbp to port 9091/tcp'
 
-# TRANSMISSION RPC PORT (TCP)
+  # transmission rpc port (tcp)
   - name: 'DEBOPS_accept_marionRR_9091_transmission_tcp'
     type: 'accept'
     accept_any: False
@@ -34,7 +34,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from marionRR to port 9091/tcp'
 
-# TRANSMISSION TORRENT PORT (TCP)
+  # transmission torrent port (tcp)
   - name: 'DEBOPS_accept_any_XXXXXXX_transmission_tcp'
     type: 'accept'
     accept_any: True

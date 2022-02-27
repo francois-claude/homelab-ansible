@@ -1,16 +1,16 @@
 ---
 system_groups__host_list:
 
-# LIDARR
+  # lidarr
   - name: 'lidarr'
-    members: 
+    members:
 
       - 'fclaude'
       - 'lidarr'
 
-# LABMEDIA
+  # labmedia
   - name: 'labmedia'
-    members: 
+    members:
 
       - 'fclaude'
       - 'lidarr'

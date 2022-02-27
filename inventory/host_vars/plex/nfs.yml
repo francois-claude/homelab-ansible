@@ -1,7 +1,7 @@
 ---
 nfs__host_shares:
 
-## TRUENAS DOCS
+  # truenas docs
   - path: '/mnt/nfs/docs'
     src: '10.10.70.20:/mnt/tank02/ds01/media/docs'
     fstype: 'nfs4'
@@ -11,7 +11,7 @@ nfs__host_shares:
     mode: '0750'
     state: 'present'
 
-## TRUENAS FRENCH
+  # truenas french
   - path: '/mnt/nfs/french'
     src: '10.10.70.20:/mnt/tank02/ds01/media/french'
     fstype: 'nfs4'
@@ -20,8 +20,8 @@ nfs__host_shares:
     group: 'labmedia'
     mode: '0750'
     state: 'present'
-   
-## TRUENAS MOVIES
+
+  # truenas movies
   - path: '/mnt/nfs/movies'
     src: '10.10.70.20:/mnt/tank02/ds01/media/movies'
     fstype: 'nfs4'
@@ -31,7 +31,7 @@ nfs__host_shares:
     mode: '0750'
     state: 'present'
 
-## TRUENAS UHD
+  # truenas uhd
   - path: '/mnt/nfs/uhd'
     src: '10.10.70.20:/mnt/tank02/ds01/media/uhd'
     fstype: 'nfs4'
@@ -41,7 +41,7 @@ nfs__host_shares:
     mode: '0755'
     state: 'present'
 
-## TRUENAS UHD DOCS
+  # truenas uhd docs
   - path: '/mnt/nfs/uhd_docs'
     src: '10.10.70.20:/mnt/tank02/ds01/media/uhd_docs'
     fstype: 'nfs4'
@@ -51,7 +51,7 @@ nfs__host_shares:
     mode: '0750'
     state: 'present'
 
-## TRUENAS TV
+  # truenas tv
   - path: '/mnt/nfs/tv'
     src: '10.10.70.20:/mnt/tank03/ds01/media/tv'
     fstype: 'nfs4'
@@ -61,7 +61,7 @@ nfs__host_shares:
     mode: '0750'
     state: 'present'
 
-## TRUENAS MUSIC
+  # truenas music
   - path: '/mnt/nfs/music'
     src: '10.10.70.20:/mnt/tank02/ds01/media/music'
     fstype: 'nfs4'
@@ -71,7 +71,7 @@ nfs__host_shares:
     mode: '0750'
     state: 'present'
 
-## TRUENAS SHRED
+  # truenas shred
   - path: '/mnt/nfs/shred'
     src: '10.10.70.20:/mnt/tank02/ds01/media/shred'
     fstype: 'nfs4'

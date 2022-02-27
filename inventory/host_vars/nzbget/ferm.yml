@@ -1,7 +1,7 @@
 ---
 ferm__host_rules:
 
-# NZBGET WEBUI PORT THREADRIPPER
+  # nzbget webui port threadripper
   - name: 'DEBOPS_accept_threadripper_6789_nzbget_webui_tcp'
     type: 'accept'
     accept_any: False
@@ -12,7 +12,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from threadripper to port 6789/tcp'
 
-# NZBGET WEBUI PORT MBP
+  # nzbget webui port mbp
   - name: 'DEBOPS_accept_mbp_6789_nzbget_webui_tcp'
     type: 'accept'
     accept_any: False
@@ -23,7 +23,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from mbp to port 6789/tcp'
 
-# NZBGET WEBUI PORT SONARR
+  # nzbget webui port sonarr
   - name: 'DEBOPS_accept_sonarr_6789_nzbget_webui_tcp'
     type: 'accept'
     accept_any: False
@@ -34,7 +34,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from sonarr to port 6789/tcp'
 
-# NZBGET WEBUI PORT RADARR
+  # nzbget webui port radarr
   - name: 'DEBOPS_accept_radarr_6789_nzbget_webui_tcp'
     type: 'accept'
     accept_any: False
@@ -45,7 +45,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from radarr to port 6789/tcp'
 
-# NZBGET WEBUI PORT RADARR-UHD
+  # nzbget webui port radarr-uhd
   - name: 'DEBOPS_accept_radarr-uhd_6789_nzbget_webui_tcp'
     type: 'accept'
     accept_any: False
@@ -56,7 +56,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from radarr-uhd to port 6789/tcp'
 
-# NZBGET WEBUI PORT LIDARR
+  # nzbget webui port lidarr
   - name: 'DEBOPS_accept_lidarr_6789_nzbget_webui_tcp'
     type: 'accept'
     accept_any: False
@@ -67,7 +67,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from lidarr to port 6789/tcp'
 
-# NZBGET WEBUI PORT NZBHYDRA
+# nzbget webui port nzbhydra
   - name: 'DEBOPS_accept_nzbhydra_6789_nzbget_webui_tcp'
     type: 'accept'
     accept_any: False

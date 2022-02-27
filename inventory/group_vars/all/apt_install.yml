@@ -7,7 +7,8 @@ apt_install__editor_packages:
 apt_install__default_alternatives:
 
   - name: 'editor'
-    path: '/usr/bin/vim.basic'
+    path: '/bin/vim.basic'
+
 
 apt_install__group_packages:
 
@@ -24,7 +25,7 @@ apt_install__group_packages:
   - 'curl'
   - 'kitty-terminfo'
 
-  
+
 #  - 'iptraf-ng'
 #  - 'nethogs'
 #  - 'atop'

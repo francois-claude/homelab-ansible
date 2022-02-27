@@ -1,14 +1,14 @@
 ---
 apt__host_repositories:
 
-## OFFICIAL MONO REPO
+  # official mono repo
   - repo: 'deb https://download.mono-project.com/repo/debian stable-buster main'
     architecture: 'amd64'
     filename: 'mono-official-buster'
     distribution: 'Debian'
     state: 'present'
 
-## OFFICIAL SONARR REPO
+  # official sonarr repo
   - repo: 'deb http://apt.sonarr.tv/debian buster main'
     architecture: 'amd64'
     filename: 'sonarr-official-buster'
@@ -16,16 +16,15 @@ apt__host_repositories:
 
 apt__host_keys:
 
-## OFFICIAL MONO REPO KEY
+  # official mono repo key
   - keyserver: 'hkp://keyserver.ubuntu.com:80'
     distribution: 'Debian'
     id: '3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF'
     state: 'present'
     architecture: 'amd64'
 
-## OFFICIAL SONARR REPO KEY
+  # official sonarr repo key
   - keyserver: 'hkp://keyserver.ubuntu.com:80'
     id: '2009837CBFFD68F45BC180471F4F90DE2A9B4BF8'
-    #id: '0xA236C58F409091A18ACA53CBEBFF6B99D9B78493'
     state: 'present'
     architecture: 'amd64'

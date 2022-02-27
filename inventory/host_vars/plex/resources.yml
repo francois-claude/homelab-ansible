@@ -16,7 +16,7 @@ resources__host_paths:
 
 resources__host_files:
 
-    # I/O SCHEDULER FOR MOUNTED TRANSCODE SSD
+  # i/o scheduler for mounted transcode ssd
   - src: '{{ resources__src + ansible_hostname + "/etc/udev/rules.d/60-transcode-ssd-scheduler.rules" }}'
     dest: '/etc/udev/rules.d/60-transcode-ssd-scheduler.rules'
     owner: 'root'
@@ -24,7 +24,7 @@ resources__host_files:
     mode: '0644'
     state: 'present'
 
-    # BLACKLIST
+  # blacklist
   - src: '{{ resources__src + ansible_hostname + "/etc/modprobe.d/blacklist-nvidia-nouveau.conf" }}'
     dest: '/etc/modprobe.d/blacklist-nvidia-nouveau.conf'
     owner: 'root'
@@ -32,7 +32,7 @@ resources__host_files:
     mode: '0644'
     state: 'present'
 
-    # PLEX SYSTEMD SECURITY
+  # plex systemd security
   - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system/plexmediaserver.service.d/plex-systemd-restrictions.conf" }}'
     dest: '/etc/systemd/system/plexmediaserver.service.d/plex-systemd-restrictions.conf'
     owner: 'root'
@@ -50,11 +50,11 @@ resources__host_commands:
     shell: |
       sudo update-initramfs -u -k all
 
-  - name: 'Reload systemd and enable plexmediaserver.service'
+  - name: 'reload systemd and enable plexmediaserver.service'
     shell: |
       if ! systemctl is-enabled plexmediaserver.service ; then
           systemctl daemon-reload
-          systemctl enable plexmediaserver.service 
+          systemctl enable plexmediaserver.service
       fi
 
       if ! systemctl is-active plexmediaserver.service ; then
@@ -62,7 +62,7 @@ resources__host_commands:
           systemctl start plexmediaserver.service
       fi
 
-  - name: 'Reload systemd and enable fstrim.service'
+  - name: 'reload systemd and enable fstrim.service'
     shell: |
       if ! systemctl is-enabled fstrim.service ; then
           systemctl daemon-reload

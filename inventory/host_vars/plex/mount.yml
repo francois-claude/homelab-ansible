@@ -1,7 +1,7 @@
 ---
 mount__host_devices:
 
-## TRANSCODE_SSD
+  # transcode_ssd
   - src: 'UUID=5bc90a88-70df-4cc4-ac9f-df23c4ff494e'
     path: '/mnt/transcode_ssd'
     fstype: 'ext4'

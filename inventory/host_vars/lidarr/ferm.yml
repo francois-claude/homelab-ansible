@@ -1,7 +1,7 @@
 ---
 ferm__host_rules:
 
-# LIDARR WEBUI PORT THREADRIPPER
+  # lidarr webui port archybtw
   - name: 'DEBOPS_accept_threadripper_8686_lidarr_webui_tcp'
     type: 'accept'
     accept_any: False
@@ -12,7 +12,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from threadripper to port 8686/tcp'
 
-# LIDARR WEBUI PORT MBP
+  # lidarr webui port mbp
   - name: 'DEBOPS_accept_mbp_8686_lidarr_webui_tcp'
     type: 'accept'
     accept_any: False

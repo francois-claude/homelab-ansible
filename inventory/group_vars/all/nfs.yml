@@ -1,10 +1,10 @@
 ---
 nfs__default_mount_type: 'nfs4'
 
-## NFS OPTION GLOBAL VARIABLES
+# nfs option global variables
 nfs_opts:
 
-  ## DEFAULTS FOR READ/WRITE SHARES
+  # defaults for read/write shares
   def_rw:
     - 'rw'
     - 'vers=4'
@@ -15,10 +15,10 @@ nfs_opts:
     - 'hard'
     - 'intr'
     - 'auto'
-    - 'timeo=600'    # DEFAULT
-    - 'retrans=2'    # DEFAULT
+    - 'timeo=600'    # default
+    - 'retrans=2'    # default
 
-  ## DEFAULTS FOR READ ONLY SHARES
+  # defaults for read only shares
   def_ro:
     - 'ro'
     - 'vers=4'
@@ -29,17 +29,17 @@ nfs_opts:
     - 'hard'
     - 'intr'
     - 'auto'
-    - 'timeo=600'    # DEFAULT
-    - 'retrans=2'    # DEFAULT
+    - 'timeo=600'    # default
+    - 'retrans=2'    # default
     - 'nocto'
 
-  ## DEFAULTS FOR ALL SHARES
+  # defaults for all shares
   safety:
     - 'nosuid'
     - 'nodev'
     - 'noexec'
 
-  ## DEFAULTS WHEN USING SYSTEMD AUTOMOUNT
+  # defaults when using systemd automount
   systemd:
     - 'x-systemd.automount'
     - 'x-systemd.idle-timeout=1h'
@@ -47,7 +47,7 @@ nfs_opts:
   systemd_med_timeo:
     - 'x-systemd.automount'
     - 'x-systemd.idle-timeout=6h'
-  
+
   systemd_long_timeo:
     - 'x-systemd.automount'
     - 'x-systemd.idle-timeout=12h'

@@ -1,7 +1,7 @@
 ---
 ferm__host_rules:
 
-# SONARR WEBUI PORT ARCHBTW
+  # sonarr webui port archbtw
   - name: 'DEBOPS_accept_archbtw_8989_sonarr_webui_tcp'
     type: 'accept'
     accept_any: False
@@ -12,7 +12,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from archbtw to port 8989/tcp'
 
-# SONARR WEBUI PORT MBP
+  # sonarr webui port mbp
   - name: 'DEBOPS_accept_mbp_8989_sonarr_webui_tcp'
     type: 'accept'
     accept_any: False
@@ -23,7 +23,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from mbp to port 8989/tcp'
 
-# SONARR WEBUI PORT MARION_RR
+  # sonarr webui port marion_rr
   - name: 'DEBOPS_accept_marionRR_8989_sonarr_webui_tcp'
     type: 'accept'
     accept_any: False

@@ -1,7 +1,7 @@
 ---
 nfs__host_shares:
 
-## TRUENAS MOVIES
+  # truenas movies
   - path: '/mnt/nfs/movies'
     src: '10.10.70.20:/mnt/tank02/ds01/media/movies'
     fstype: 'nfs4'
@@ -11,7 +11,7 @@ nfs__host_shares:
     mode: '0770'
     state: 'present'
 
-## TRUENAS DOCS
+  # truenas docs
   - path: '/mnt/nfs/docs'
     src: '10.10.70.20:/mnt/tank02/ds01/media/docs'
     fstype: 'nfs4'
@@ -21,7 +21,7 @@ nfs__host_shares:
     mode: '0770'
     state: 'present'
 
-## TRUENAS FRENCH
+  # truenas french
   - path: '/mnt/nfs/french'
     src: '10.10.70.20:/mnt/tank02/ds01/media/french'
     fstype: 'nfs4'
@@ -31,7 +31,7 @@ nfs__host_shares:
     mode: '0775'
     state: 'present'
 
-## NZBGET SHARE
+  # nzbget share
   - path: '/mnt/nfs/nzbget'
     src: '10.10.90.12:/radarr'
     fstype: 'nfs4'
@@ -41,7 +41,7 @@ nfs__host_shares:
     mode: '0750'
     state: 'present'
 
-## RTPS SHARE
+  # rtps share
   - path: '/mnt/nfs/rt_work'
     src: '10.10.90.10:/rt_work'
     fstype: 'nfs4'

@@ -1,5 +1,5 @@
 ---
-## PYROSCOPE ETC STILL REQUIRE PYTHON2
+# pyroscope etc still require python2
 python__v2: True
 
 python__v3: True

@@ -1,7 +1,7 @@
 ---
 nfs__host_shares:
 
-## TRUENAS TV
+  # truenas tv
   - path: '/mnt/nfs/music'
     src: '10.10.70.20:/mnt/tank03/ds01/media/music'
     fstype: 'nfs4'
@@ -11,7 +11,7 @@ nfs__host_shares:
     mode: '0750'
     state: 'present'
 
-## NZBGET TO LIDARR SHARE
+  # nzbget to lidarr share
   - path: '/mnt/nfs/nzbget'
     src: '10.10.90.12:/lidarr'
     fstype: 'nfs4'
@@ -21,7 +21,7 @@ nfs__host_shares:
     mode: '0750'
     state: 'present'
 
-## RTPS SHARE
+  # rtps share
   - path: '/mnt/nfs/rt_work'
     src: '10.10.90.10:/rt_work'
     fstype: 'nfs4'

@@ -1,7 +1,7 @@
 ---
 ferm__host_rules:
 
-# NGINX
+  # NGINX
   - name: 'DEBOPS_accept_nginx_9117_jackett_tcp'
     type: 'accept'
     accept_any: False

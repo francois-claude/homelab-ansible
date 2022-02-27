@@ -1,14 +1,14 @@
 ---
 resources__host_paths:
 
-## OPT DIR
+  # opt dir
   - path: '/opt'
     owner: 'root'
     group: 'root'
     mode: '0755'
     state: 'directory'
 
-## NZBHYDRA CONF DIR
+  # nzbhydra conf dir
   - path: '/opt/nzbhydra2'
     owner: 'nzbhydra'
     group: 'nzbhydra'
@@ -17,10 +17,10 @@ resources__host_paths:
     acl:
       - etype: 'user'
         entity: 'fclaude'
-        permissions: 'rwX'
+        permissions: 'rwx'
         state: 'present'
 
-## NZBHYDRA CONF DIR
+  # nzbhydra conf dir
   - path: '/etc/nzbhydra'
     owner: 'root'
     group: 'root'
@@ -35,7 +35,7 @@ resources__host_paths:
     acl:
       - etype: 'user'
         entity: 'fclaude'
-        permissions: 'rwX'
+        permissions: 'rwx'
         state: 'present'
 
   - path: '/etc/nzbhydra/database'
@@ -46,7 +46,7 @@ resources__host_paths:
     acl:
       - etype: 'user'
         entity: 'fclaude'
-        permissions: 'rwX'
+        permissions: 'rwx'
         state: 'present'
 
   - path: '/etc/nzbhydra/backup'
@@ -57,12 +57,12 @@ resources__host_paths:
     acl:
       - etype: 'user'
         entity: 'fclaude'
-        permissions: 'rwX'
+        permissions: 'rwx'
         state: 'present'
 
 resources__host_files:
 
-## NZBHYDRA SYSTEMD SCRIPT
+  # nzbhydra systemd script
   - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system/nzbhydra.service" }}'
     dest: '/etc/systemd/system/nzbhydra.service'
     owner: 'root'
@@ -70,7 +70,7 @@ resources__host_files:
     mode: '0644'
     state: 'present'
 
-## NZBHYDRA PYTHON2 LAUNCH HELPER
+  # nzbhydra python2 launch helper
   - src: '{{ resources__src + ansible_hostname + "/etc/nzbhydra/nzbhydra2wrapper.py" }}'
     dest: '/etc/nzbhydra/nzbhydra2wrapper.py'
     owner: 'nzbhydra'
@@ -78,9 +78,9 @@ resources__host_files:
     mode: '0644'
     state: 'present'
 
-## NZBHYDRA PYTHON3 LAUNCH HELPER
-  - src: '{{ resources__src + ansible_hostname + "/etc/nzbhydra/nzbhydra2wrapperPy3.py" }}'
-    dest: '/etc/nzbhydra/nzbhydra2wrapperPy3.py'
+  # nzbhydra python3 launch helper
+  - src: '{{ resources__src + ansible_hostname + "/etc/nzbhydra/nzbhydra2wrapperpy3.py" }}'
+    dest: '/etc/nzbhydra/nzbhydra2wrapperpy3.py'
     owner: 'nzbhydra'
     group: 'nzbhydra'
     mode: '0644'
@@ -88,9 +88,9 @@ resources__host_files:
 
 # resources__host_archives:
 
-## NZBHYDRA BINARIES [ FIRST RUN ONLY ]
-  - src: '{{ resources__src + ansible_hostname + "/nzbhydra2-3.5.1-linux.zip" }}'
-    dest: '/opt/nzbhydra2'
-    creates: '/opt/nzbhydra2'
-    owner: 'nzbhydra'
-    group: 'nzbhydra'
+#   # nzbhydra binaries [ first run only ]
+#   - src: '{{ resources__src + ansible_hostname + "/nzbhydra2-3.5.1-linux.zip" }}'
+#     dest: '/opt/nzbhydra2'
+#     creates: '/opt/nzbhydra2'
+#     owner: 'nzbhydra'
+#     group: 'nzbhydra'

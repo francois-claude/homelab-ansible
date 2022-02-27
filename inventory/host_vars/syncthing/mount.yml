@@ -1,7 +1,7 @@
 ---
 mount__host_binds:
 
-## IMPORT BIND MOUNTS
+  # import bind mounts
   - src: '/mnt/nfs/syncthing/syncthing_server'
     dest: '/var/lib/syncthing/syncthing_server'
     state: 'present'

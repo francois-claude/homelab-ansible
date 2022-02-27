@@ -1,7 +1,7 @@
 ---
 ferm__host_rules:
 
-# RADARR WEBUI PORT ARCHBTW
+  # radarr webui port archbtw
   - name: 'DEBOPS_accept_archbtw_7878_radarr_webui_tcp'
     type: 'accept'
     accept_any: False
@@ -12,7 +12,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from archbtw to port 7878/tcp'
 
-# RADARR WEBUI PORT MBP
+  # radarr webui port mbp
   - name: 'DEBOPS_accept_mbp_7878_radarr_webui_tcp'
     type: 'accept'
     accept_any: False
@@ -23,7 +23,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from mbp to port 7878/tcp'
 
-# RADARR WEBUI PORT MARION_RR
+  # radarr webui port marion_rr
   - name: 'DEBOPS_accept_marionRR_7878_radarr_webui_tcp'
     type: 'accept'
     accept_any: False

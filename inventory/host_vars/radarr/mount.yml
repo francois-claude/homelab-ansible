@@ -1,7 +1,7 @@
 ---
 mount__host_binds:
 
-## NZB IMPORT MOUNT
+  # nzb import mount
   - src: '/mnt/nfs/nzbget'
     dest: '/var/lib/radarr/import/nzbget'
     state: 'present'
@@ -12,7 +12,7 @@ mount__host_binds:
       - 'x-systemd.automount'
       - 'x-systemd.requires-mounts-for=/mnt/nfs/nzbget/'
 
-## RTPS IMPORT MOUNT
+  # rtps import mount
   - src: '/mnt/nfs/rt_work'
     dest: '/var/lib/radarr/import/rt_work'
     state: 'present'

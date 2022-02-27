@@ -1,23 +1,23 @@
 ---
 resources__host_paths:
 
-## REMOVE DELUGED INIT.D SCRIPT
+  # remove deluged init.d script
   - path: '/etc/init.d/deluged'
     state: 'absent'
 
-## REMOVE DELUGED ETC/DEFAULT INIT.D CONF
+  # remove deluged etc/default init.d conf
   - path: '/etc/default/deluged'
     state: 'absent'
 
-## REMOVE DEFAULT PID FILE LOCATION
+  # remove default pid file location
   - path: '/var/lib/deluged/config/deluged/deluged.pid'
     state: 'absent'
 
-## REMOVE DELUGE DEFAULT CONFIG PARENT DIR
+  # remove deluge default config parent dir
   - path: '/var/lib/deluged/.config'
     state: 'absent'
 
-## CREATE ROOT MOUNT DIRS
+  # create root mount dirs
   - path: '/mnt'
     owner: 'root'
     group: 'root'
@@ -36,63 +36,63 @@ resources__host_paths:
     mode: '0755'
     state: 'directory'
 
-## CREATE DELUGE PID DIR
+  # create deluge pid dir
   - path: '/var/run/deluged'
     owner: 'debian-deluged'
     group: 'debian-deluged'
     mode: '0750'
     state: 'directory'
 
-## CREATE DELUGE LIB DIR
+  # create deluge lib dir
   - path: '/var/lib/deluged'
     owner: 'debian-deluged'
     group: 'debian-deluged'
     mode: '0750'
     state: 'directory'
 
-## CREATE DELUGED CONFIG DIR
+  # create deluged config dir
   - path: '/var/lib/deluged/config/deluge-web'
     owner: 'debian-deluged'
     group: 'debian-deluged'
     mode: '0750'
     state: 'directory'
 
-## CREATE DELUGED CONFIG DIR
+  # create deluged config dir
   - path: '/var/lib/deluged/config/deluged'
     owner: 'debian-deluged'
     group: 'debian-deluged'
     mode: '0750'
     state: 'directory'
 
-## CREATE DELUGED WATCH DIR
+  # create deluged watch dir
   - path: '/var/lib/deluged/config/deluged/watch'
     owner: 'debian-deluged'
     group: 'debian-deluged'
     mode: '0750'
     state: 'directory'
 
-## CREATE DELUGED ARCHIVE DIR
+  # create deluged archive dir
   - path: '/var/lib/deluged/config/deluged/torrent_files'
     owner: 'debian-deluged'
     group: 'debian-deluged'
     mode: '0750'
     state: 'directory'
 
-## CREATE DELUGE LOG DIR
+  # create deluge log dir
   - path: '/var/log/deluged'
     owner: 'debian-deluged'
     group: 'adm'
     mode: '2750'
     state: 'directory'
 
-## SET PERMS ON DELUGED LOG FILE
+  # set perms on deluged log file
   - path: '/var/log/deluged/deluged.log'
     owner: 'debian-deluged'
     group: 'adm'
     mode: '0640'
     state: 'touch'
 
-## SET PERMS ON DELUGE-WEB LOG FILE
+  # set perms on deluge-web log file
   - path: '/var/log/deluged/deluge-web.log'
     owner: 'debian-deluged'
     group: 'adm'
@@ -101,7 +101,7 @@ resources__host_paths:
 
 resources__host_files:
 
-## DELUGED SYSTEMD SCRIPT
+  # deluged systemd script
   - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system/deluged.service" }}'
     dest: '/etc/systemd/system/deluged.service'
     owner: 'root'
@@ -109,7 +109,7 @@ resources__host_files:
     mode: '0644'
     state: 'present'
 
-## DELUGE-WEB SYSTEMD SCRIPT
+  # deluge-web systemd script
   - src: '{{ resources__src + ansible_hostname + "/etc/systemd/system/deluge-web.service" }}'
     dest: '/etc/systemd/system/deluge-web.service'
     owner: 'root'
@@ -117,7 +117,7 @@ resources__host_files:
     mode: '0644'
     state: 'present'
 
-## DELUGED VAR RUN DIRECTORY
+  # deluged var run directory
   - src: '{{ resources__src + ansible_hostname + "/etc/tmpfiles.d/var_run_deluged.conf" }}'
     dest: '/etc/tmpfiles.d/var_run_deluged.conf'
     owner: 'root'
@@ -127,7 +127,7 @@ resources__host_files:
 
 resources__host_commands:
 
-## RELOAD SYSTEMD DAEMON
+  # reload systemd daemon
   - name: 'reload the systemd daemon'
     shell: |
       sleep 2 && systemctl daemon-reload && sleep 2

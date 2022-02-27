@@ -1,7 +1,7 @@
 ---
 nfs__host_shares:
 
-## truenas icloud downloader
+  # truenas icloud downloader
   - path: '/mnt/nfs/icloud_downloader'
     src: '10.69.69.1:/mnt/tank03/ds03/backups/media/photos/icloud_photos/icloud_downloader'
     fstype: 'nfs4'
@@ -11,7 +11,7 @@ nfs__host_shares:
     mode: '0755'
     state: 'present'
 
-## truenas icloud downloader (archive directory)
+  # truenas icloud downloader (archive directory)
   - path: '/mnt/nfs/icloud_downloader_archive'
     src: '10.69.69.1:/mnt/tank03/ds03/backups/media/photos/icloud_photos/archive'
     fstype: 'nfs4'

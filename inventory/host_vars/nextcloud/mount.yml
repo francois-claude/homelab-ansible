@@ -1,7 +1,7 @@
 ---
 mount__host_binds:
 
-## BIND MOUNT NFS SHARE TO NEXTCLOUD HOME DIR
+  # bind mount nfs share to nextcloud home dir
   - src: '/mnt/nfs/nextcloud/data'
     dest: '/srv/www/nextcloud/data'
     state: 'present'

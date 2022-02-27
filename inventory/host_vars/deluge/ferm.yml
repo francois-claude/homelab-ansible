@@ -1,41 +1,41 @@
 ---
 ferm__host_rules:
 
-# DELUGE TORRENT PORT (TCP)
-  - name: 'DEBOPS_accept_any_27706_deluge_daemon_tcp'
+  # deluge torrent port (tcp)
+  - name: 'debops_accept_any_27706_deluge_daemon_tcp'
     type: 'accept'
-    accept_any: True
+    accept_any: true
     daddr: '10.10.90.13'
     dport: '27706'
     protocol: 'tcp'
     rule_state: 'present'
     comment: 'accept incoming connections from any to port 27706/tcp'
 
-# DELUGE TORRENT PORT (UDP)
-  - name: 'DEBOPS_accept_any_27706_deluge_daemon_udp'
+  # deluge torrent port (udp)
+  - name: 'debops_accept_any_27706_deluge_daemon_udp'
     type: 'accept'
-    accept_any: True
+    accept_any: true
     daddr: '10.10.90.13'
     dport: '27706'
     protocol: 'udp'
     rule_state: 'present'
     comment: 'accept incoming connections from any to port 27706/udp'
 
-# DELUGE DAEMON PORT THREADRIPPER
-  - name: 'DEBOPS_accept_threadripper_58846_deluge_daemon_tcp'
+  # deluge daemon port archbtw
+  - name: 'debops_accept_archbtw_58846_deluge_daemon_tcp'
     type: 'accept'
-    accept_any: False
+    accept_any: false
     saddr: '10.10.100.10'
     daddr: '10.10.90.13'
     dport: '58846'
     protocol: 'tcp'
     rule_state: 'present'
-    comment: 'accept incoming connections from threadripper to port 58846/tcp'
+    comment: 'accept incoming connections from archbtw to port 58846/tcp'
 
-# DELUGE DAEMON PORT MBP
-  - name: 'DEBOPS_accept_mbp_58846_deluge_daemon_tcp'
+  # deluge daemon port mbp
+  - name: 'debops_accept_mbp_58846_deluge_daemon_tcp'
     type: 'accept'
-    accept_any: False
+    accept_any: false
     saddr: '10.10.100.20'
     daddr: '10.10.90.13'
     dport: '58846'
@@ -43,21 +43,21 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from mbp to port 58846/tcp'
 
-# DELUGE WEBUI PORT THREADRIPPER
-  - name: 'DEBOPS_accept_threadripper_8112_deluge_web_tcp'
+  # deluge webui port archbtw
+  - name: 'debops_accept_archbtw_8112_deluge_web_tcp'
     type: 'accept'
-    accept_any: False
+    accept_any: false
     saddr: '10.10.100.10'
     daddr: '10.10.90.13'
     dport: '8112'
     protocol: 'tcp'
     rule_state: 'present'
-    comment: 'accept incoming connections from threadripper to port 8112/tcp'
+    comment: 'accept incoming connections from archbtw to port 8112/tcp'
 
-# DELUGE WEBUI PORT MBP
-  - name: 'DEBOPS_accept_mbp_8112_deluge_web_tcp'
+  # deluge webui port mbp
+  - name: 'debops_accept_mbp_8112_deluge_web_tcp'
     type: 'accept'
-    accept_any: False
+    accept_any: false
     saddr: '10.10.100.20'
     daddr: '10.10.90.13'
     dport: '8112'

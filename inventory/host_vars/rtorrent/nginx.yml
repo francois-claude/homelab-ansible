@@ -3,10 +3,9 @@ nginx__default_servers: []
 
 nginx__internal_servers: []
 
+# harden nginx
+nginx_host_allow:
 
-## HARDEN NGINX
-nginx_host_allow: 
-  
-  - '10.10.120.25' # SONARR
-  - '10.10.120.26' # RADARR
-  - '10.10.120.28' # LIDARR
+  - '10.10.120.25' # sonarr
+  - '10.10.120.26' # radarr
+  - '10.10.120.28' # lidarr

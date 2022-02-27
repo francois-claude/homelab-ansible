@@ -1,7 +1,7 @@
 ---
 apt__host_repositories:
 
-## OFFICIAL OMBI REPO
+  # official ombi repo
   - repo: 'deb http://repo.ombi.turd.me/stable/ jessie main'
     architecture: 'amd64'
     filename: 'ombi-official-stable'
@@ -10,7 +10,7 @@ apt__host_repositories:
 
 apt__host_keys:
 
-## OFFICIAL OMBI REPO KEY
+  # official ombi repo key
   - url: 'https://repo.ombi.turd.me/pubkey.txt'
     state: 'present'
 

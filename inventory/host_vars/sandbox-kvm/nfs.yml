@@ -1,7 +1,7 @@
 ---
 nfs__host_shares:
 
-# TRUENAS BOOKS (READ/WRITE)
+  # truenas books (read/write)
   - path: '/mnt/nfs/common'
     src: '10.10.70.20:/mnt/tank03/ds02/lab/common'
     fstype: 'nfs4'

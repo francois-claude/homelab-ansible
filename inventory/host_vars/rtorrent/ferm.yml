@@ -1,11 +1,7 @@
 ---
-ferm__enabled: True
-ferm__iptables_backend_enabled: True
-ferm__iptables_backend_path: '/usr/sbin/iptables-legacy'
-
 ferm__host_rules:
 
-# RTPS TORRENT PORT (TCP)
+  # rtps torrent port (tcp)
   - name: 'DEBOPS_accept_any_58583_rtorrent_tcp'
     type: 'accept'
     accept_any: True
@@ -15,7 +11,7 @@ ferm__host_rules:
     rule_state: 'present'
     comment: 'accept incoming connections from any to port 58583/tcp'
 
-# RTPS TORRENT PORT (UDP) ## DISABLED
+  # rtps torrent port (udp) ## disabled
   - name: 'DEBOPS_accept_any_58583_rtorrent_udp'
     type: 'accept'
     accept_any: True

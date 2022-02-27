@@ -1,16 +1,16 @@
 ---
 system_groups__host_list:
 
-# RADARR
+  # radarr
   - name: 'radarr'
-    members: 
+    members:
 
       - 'fclaude'
       - 'radarr'
 
-# LABMEDIA
+  # labmedia
   - name: 'labmedia'
-    members: 
+    members:
 
       - 'fclaude'
       - 'radarr'

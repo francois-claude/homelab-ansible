@@ -1,7 +1,7 @@
 ---
 ferm__host_rules:
 
-# ALLOW NODE
+  # allow node
   - name: 'DEBOPS_accept_port_3000_any_node'
     type: 'accept'
     accept_any: True
@@ -11,7 +11,7 @@ ferm__host_rules:
     rule_state: 'absent'
     comment: 'accept incoming connections from nginx to port 3000/tcp'
 
-# ALLOW ARCHBTW
+  # allow archbtw
   - name: 'DEBOPS_accept_port_3000_any_node_archbtw'
     type: 'accept'
     accept_any: True

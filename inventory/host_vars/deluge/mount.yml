@@ -1,8 +1,8 @@
 ---
 mount__host_devices:
 
-## DELUGE SEED VOLUME (MDADM RAID)
-  - src: 'UUID=aaa707bf-f12f-4ed0-9a19-24dea0f424c9'
+  # deluge seed volume (mdadm raid)
+  - src: 'uuid=aaa707bf-f12f-4ed0-9a19-24dea0f424c9'
     path: '/mnt/vols/deluge'
     fstype: 'ext4'
     options: [ 'defaults' ]

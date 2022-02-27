@@ -1,7 +1,7 @@
 ---
 apt__host_repositories:
 
-## OFFICIAL MONO REPO
+  # official mono repo
   - repo: 'deb https://download.mono-project.com/repo/debian stable-buster main'
     architecture: 'amd64'
     filename: 'mono-official-stable'
@@ -10,8 +10,8 @@ apt__host_repositories:
 
 apt__host_keys:
 
-## OFFICIAL MONO REPO KEY
-  - keyserver: 'hkp://keyserver.ubuntu.com:80'
+  # official mono repo key
+  - keyserver: 'hkps://keyserver.ubuntu.com:443'
     distribution: 'Debian'
     id: '3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF'
     state: 'present'

@@ -1,7 +1,7 @@
 ---
 nfs__host_shares:
 
-## TRUENAS DELUGE
+  # truenas deluge
   - path: '/mnt/nfs/deluge'
     src: '10.10.70.20:/mnt/tank03/ds01/media/.downloads/deluge'
     fstype: 'nfs4'
